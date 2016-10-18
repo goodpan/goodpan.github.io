@@ -3,14 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>goodpan</title>
+  <title>js中arguments对象详解 | goodpan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="goodpan">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="##概念arguments对象时一个类数组的对象，代表传给一个function的参数列表。arguments并不是真正的数组，它是一个类数组对象。
+##length属性arguments包含一个length属性，通过arguments.length可获得参数个数。
+##argumens转数组
+###Array.prototype.slice通常使用下面的方法来将 arguments 转换成数组：A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中arguments对象详解">
+<meta property="og:url" content="http://yoursite.com/2016/10/18/js中arguments对象详解/index.html">
 <meta property="og:site_name" content="goodpan">
+<meta property="og:description" content="##概念arguments对象时一个类数组的对象，代表传给一个function的参数列表。arguments并不是真正的数组，它是一个类数组对象。
+##length属性arguments包含一个length属性，通过arguments.length可获得参数个数。
+##argumens转数组
+###Array.prototype.slice通常使用下面的方法来将 arguments 转换成数组：A">
+<meta property="og:updated_time" content="2016-10-18T01:15:39.370Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="goodpan">
+<meta name="twitter:title" content="js中arguments对象详解">
+<meta name="twitter:description" content="##概念arguments对象时一个类数组的对象，代表传给一个function的参数列表。arguments并不是真正的数组，它是一个类数组对象。
+##length属性arguments包含一个length属性，通过arguments.length可获得参数个数。
+##argumens转数组
+###Array.prototype.slice通常使用下面的方法来将 arguments 转换成数组：A">
   
     <link rel="alternate" href="/atom.xml" title="goodpan" type="application/atom+xml">
   
@@ -59,9 +72,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-js中arguments对象详解" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-js中arguments对象详解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/10/18/js中arguments对象详解/" class="article-date">
   <time datetime="2016-10-18T00:40:53.000Z" itemprop="datePublished">2016-10-18</time>
@@ -74,8 +85,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/18/js中arguments对象详解/">js中arguments对象详解</a>
+    <h1 class="article-title" itemprop="name">
+      js中arguments对象详解
     </h1>
   
 
@@ -121,121 +132,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hexo的安装部署" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/17/hexo的安装部署/" class="article-date">
-  <time datetime="2016-10-17T05:46:29.967Z" itemprop="datePublished">2016-10-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/17/hexo的安装部署/">hexo 安装部署</a>
-    </h1>
+    <a href="/2016/10/17/hexo的安装部署/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">hexo 安装部署</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h2><h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><h2 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h2><ul>
-<li>新建一个仓库<br>注意仓库名字：比如我的Github账号是goodpan，那么我应该创建的Repository的名字是：goodpan.github.io。<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2>  npm install -g hexo<h2 id="启动hexo"><a href="#启动hexo" class="headerlink" title="启动hexo"></a>启动hexo</h2></li>
-<li>新建文件夹，如H:\Hexo</li>
-<li>进入Hexo文件中，右键打开Git Bash</li>
-<li>执行下面的命令：<br>hexo init Hexo<br>随后会自动在目标文件夹建立网站所需要的文件</li>
-<li>在Hexo文件中打开终端，运行npm install，安装依赖</li>
-<li>执行：hexo server启动hexo服务,出现：Hexo is running at<a href="http://localhost:4000/表明hexo" target="_blank" rel="external">http://localhost:4000/表明hexo</a> server已经启动</li>
-<li>在浏览器中打开 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a><h2 id="hexo命令"><a href="#hexo命令" class="headerlink" title="hexo命令"></a>hexo命令</h2></li>
-<li>在H:\hexo目录下打开一个git bash命令行窗口，执行命令：<br>hexo new “My New Post”<br>刷新<a href="http://localhost:4000/，可以发现已生成了一篇新文章" target="_blank" rel="external">http://localhost:4000/，可以发现已生成了一篇新文章</a> “My New Post”。</li>
-<li>执行下面的命令，将markdown文件生成静态网页：hexo generate，该命令执行完后，会在 D:\Hexo\public\ 目录下生成一系列html，css等文件。<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2></li>
-<li>配置_config.yml文件<br>首先找到下面的内容:<br>deploy:<br>type:<br>然后将它们修改为<br>deploy:<br>type:  git<br>repository:  <a href="https://github.com/goodpan/goodpan.github.io.git" target="_blank" rel="external">https://github.com/goodpan/goodpan.github.io.git</a><br>branch: master</li>
-<li>配置说明：</li>
-</ul>
-<ol>
-<li>type在git 3.0后填写为git而非github</li>
-<li>type、reoisitory、branch必须有空格，如果格式出错会报如下错误：<br>FATAL bad indentation of a mapping entry at line 72, column 15:</li>
-</ol>
-<ul>
-<li><p>依次执行以下命令部署：</p>
-<p>hexo clean</p>
-<p>hexo generate</p>
-<p>hexo deploy</p>
-</li>
-<li>错误解决</li>
-</ul>
-<ol>
-<li><p>ERROR Local hexo not found in ~/blog ERROR Try runing: ‘npm install hexo –save’</p>
-<p>执行命令：<br>npm install hexo –save</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/17/hexo的安装部署/" data-id="ciuestteh0003j8aup8zqpw5y" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/17/hello-world/" class="article-date">
-  <time datetime="2016-10-17T01:28:07.817Z" itemprop="datePublished">2016-10-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/10/17/hello-world/" data-id="ciuestte20001j8audvjdhkmv" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 </section>
         
