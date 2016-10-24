@@ -246,6 +246,145 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/24/javascript数组详解（一）/" itemprop="url">
+                  javascript数组详解(一)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-24T10:44:19+08:00" content="2016-10-24">
+              2016-10-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>数组是值的有序集合，每个值叫做一个元素，每个元素在数组中有一个位置，以数字表示，称为索引。 和其他强类型语言不同，在 JavaScript 中，数组是无类型的，可以容纳任何类型的值，可以是字符串、数字、对象（ object ），甚至是其他数组（多维数组就是通过这种方式来实现的）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a = [ 1, <span class="string">"2"</span>, [3] ];</div><div class="line">a.length; // 3</div><div class="line">a[0] === 1; // <span class="literal">true</span></div><div class="line">a[2][0] === 3; // <span class="literal">true</span></div></pre></td></tr></table></figure>
+<p>对数组声明后即可向其中加入值，不需要预先设定大小</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = [ ];</div><div class="line">a.length; // 0</div><div class="line">a[0] = 1;</div><div class="line">a[1] = <span class="string">"2"</span>;</div><div class="line">a[2] = [ 3 ];</div><div class="line">a.length; // 3</div></pre></td></tr></table></figure>
+<p>使用 delete 运算符可以将单元从数组中删除，但是请注意，单元删除后，数组的 length 属性并不会发生变化。 在创建 “ 稀疏 “ 数组（ sparse array ，即含有空白或空缺单元的数组）时要特别注意：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = [ ];</div><div class="line">a[0] = 1;</div><div class="line">//  此处没有设置 a[1] 单元</div><div class="line">a[2] = [ 3 ];</div><div class="line">a[1]; // undefined</div><div class="line">a.length; // 3</div></pre></td></tr></table></figure>
+<p>上面的代码可以正常运行，但其中的 “ 空白单元 “ （ empty slot ）可能会导致出人意料的结果。 a[1] 的值为 undefined ，但这 与将其显式赋值为 undefined （ a[1] = undefined ）还是有所区别。 数组通过数字进行索引，但有趣的是它们也是对象，所以也可以包含字符串键值和属性（但这些并不计算在数组长度内）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = [ ];</div><div class="line">a[0] = 1;</div><div class="line">a[<span class="string">"foobar"</span>] = 2;</div><div class="line">a.length; // 1</div><div class="line">a[<span class="string">"foobar"</span>]; // 2</div><div class="line">a.foobar; // 2</div></pre></td></tr></table></figure>
+<p>这里有个问题需要特别注意，如果字符串键值能够被强制类型转换为十进制数字的话，它就会被当作数字索引来处理。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = [ ];</div><div class="line">a[<span class="string">"13"</span>] = 42;</div><div class="line">a.length; // 14</div></pre></td></tr></table></figure>
+<p>在数组中加入字符串键值 / 属性并不是一个好主意。建议使用对象来存放键值 / 属性值，用数组来存放数字索引值。</p>
+<p>数组继承自Array.prototype中的属性，它定义了一套丰富的数组操作方法。</p>
+<h1 id="类数组（伪数组）"><a href="#类数组（伪数组）" class="headerlink" title="类数组（伪数组）"></a>类数组（伪数组）</h1><p>有时需要将类数组（一组通过数字索引的值）转换为真正的数组，这一般通过数组工具函数（如 indexOf(..) 、 concat(..) 、 forEach(..) 等）来实现。</p>
+<p>例如，一些 DOM 查询操作会返回 DOM 元素列表，它们并非真正意义上的数组，但十分类似。另一个例子是通过 arguments 对象（类数组）将函数的参数当作列表来访问（从 ES6 开始已废止）。 工具函数 slice(..) 经常被用于这类转换：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;</div><div class="line">var arr = Array.prototype.slice.call( arguments );</div><div class="line">arr.push( <span class="string">"bam"</span> );</div><div class="line">console.log( arr );</div><div class="line">&#125;</div><div class="line">foo( <span class="string">"bar"</span>, <span class="string">"baz"</span> ); // [<span class="string">"bar"</span>,<span class="string">"baz"</span>,<span class="string">"bam"</span>]</div></pre></td></tr></table></figure>
+<p>如上所示， slice() 返回参数列表（上例中是一个类数组）的一个数组复本。 用 ES6 中的内置工具函数 Array.from(..) 也能实现同样的功能：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">var arr = Array.from( arguments );</div></pre></td></tr></table></figure>
+<h1 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h1><h2 id="字面量方式"><a href="#字面量方式" class="headerlink" title="字面量方式"></a>字面量方式</h2><p>使用字面量是创建数组的最简单的方法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var empty = []; var primes = [1,2,3,4,5]; var misc = [1.1,<span class="literal">true</span>,<span class="string">"a"</span>];</div></pre></td></tr></table></figure>
+<p>数组字面量中的值，不一定要是常量，它可以是任意的表达式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var base = 1024; var table = [base,base+1,base+2,base+3];</div></pre></td></tr></table></figure>
+<p>它可以包含对象直接量或其他数组直接量：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var b = [[1,&#123;x:1,y:2&#125;],[2,&#123;x:3,y:4&#125;]];</div></pre></td></tr></table></figure>
+<p>如果省略数组直接量中的某个值，省略的元素将被赋予undefined值：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var count = [1,,3];//数组有3个元素，中间元素值为undefined</div><div class="line">var undefs = [,,];//数组有2个元素，都是undefined</div></pre></td></tr></table></figure></p>
+<p>因为数组直接量语法允许有可选的结尾的逗号，所以[,,]只有2个元素而非3个。</p>
+<h2 id="调用构造函数Array-创建数组"><a href="#调用构造函数Array-创建数组" class="headerlink" title="调用构造函数Array()创建数组"></a>调用构造函数Array()创建数组</h2><ul>
+<li>调用时没有参数<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var arr = new Array();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>该方法创建一个没有任何元素的空数组，等同于数组字面量[]。</p>
+<ul>
+<li>调用时传入 数值参数，指定数组长度<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var arr = new Array(10);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>该方式创建指定长度的数组。当预先知道所需元素个数时，这种形式的Array()构造函数可以用来预先分配一个数组空间。注意，数组中没有存储值，甚至数组的索引”0”、”1”等还未定义。</p>
+<ul>
+<li>显示指定2个或者多个数组元素或数组的一个非数值元素：<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var arr = new Array(5,4,3,2,1,<span class="string">"testing,testing"</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>以这种形式，构造函数的参数将会成为新数组的元素。使用数组字面量比这样使用Array()构造函数简单多了。</p>
+<h1 id="稀疏数组"><a href="#稀疏数组" class="headerlink" title="稀疏数组"></a>稀疏数组</h1><p>稀疏数组就是包含从0开始的不连续索引的数组。通常，数组的length属性值代表数组中元素的个数。如果数组是稀疏的，length属性值大于元素的个数。可以用Array()构造函数或简单地指定数组的索引值大于当前的数组长度来创建稀疏数组。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr = new Array(5);//数组没有元素，但是a.length是5。</div><div class="line">arr = [];//创建一个空数组，length = 0;</div><div class="line">arr[1000] = 0;//赋值添加一个元素，但是设置length为1001；</div></pre></td></tr></table></figure></p>
+<p>足够稀疏的数组实际上比稠密的数组更慢，内存利用率更高，在这样的数组中查找元素的时间与常规对象属性的查找时间一样。<br>注意：当在数组字面量中省略值时不会创建稀疏数组。省略元素在数组中是存在的，其值为undefined。这和数组元素根本不存在是有一些微妙的区别的。可以用in操作符检测两者之间的区别。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a1 = [,,,];//数组是[undefinded,undefinded,undefinded];</div><div class="line">var a2 = new Array(3);//该数组根本没有元素</div><div class="line">0 <span class="keyword">in</span> a1     //=&gt; <span class="literal">true</span>:a1 在索引0处有一个元素。</div><div class="line">0 <span class="keyword">in</span> a2     //=&gt; <span class="literal">false</span>:a2 在索引0处没有元素</div></pre></td></tr></table></figure></p>
+<p>在一些旧版本的浏览器中，在存在连续逗号的情况下，插入undefined值的操作则与此不同，在这些实现中，[1,,3]和[1,undefinde,3]是一模一样的。</p>
+<h1 id="length属性"><a href="#length属性" class="headerlink" title="length属性"></a>length属性</h1><p>每个数组都有一个length属性，就是这个属性使其区别于常规的javascript对象。稠密数组的length值比数组最大索引大1。<br>而稀疏数组的length属性则大于元素的个数。<br>当设置length属性为一个小于当前长度的非负整数n时，当前数组中那些索引值大于或等于n的元素将从中删除。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3,4,5];//从5个元素的数组开始</div><div class="line">a.length = 3;//现在a为[1,2,3]</div><div class="line">a.length = 5;//长度为5，但是没有元素，就像new Array(5);</div></pre></td></tr></table></figure></p>
+<p>当设置length属性为一个大于当前长度的非负整数n时，实际上这不会向数组中添加新的元素，它只是在数组尾部创建一个空的区域。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3];</div><div class="line">Object.defineProperty(a,<span class="string">"length"</span>,&#123;writable,<span class="literal">false</span>&#125;);</div><div class="line">a.length = 0;</div></pre></td></tr></table></figure></p>
+<p>在ECMAScript 5中，可以用Object.defineProperty()让数组的length属性变成只读的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/21/javascript类型详解/" itemprop="url">
                   javascript类型详解
                 </a>
@@ -616,6 +755,150 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/18/hexo的安装部署/" itemprop="url">
+                  hexo 安装部署
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T10:44:19+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h2><h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><h2 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h2><ul>
+<li>新建一个仓库<br>注意仓库名字：比如我的Github账号是goodpan，那么我应该创建的Repository的名字是：goodpan.github.io。<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="启动hexo"><a href="#启动hexo" class="headerlink" title="启动hexo"></a>启动hexo</h2><ul>
+<li>新建文件夹，如H:\Hexo</li>
+<li>进入Hexo文件中，右键打开Git Bash</li>
+<li><p>执行下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init Hexo</div></pre></td></tr></table></figure>
+<p>随后会自动在目标文件夹建立网站所需要的文件</p>
+</li>
+<li>在Hexo文件中打开终端，运行npm install，安装依赖</li>
+<li>执行：hexo server启动hexo服务,出现：Hexo is running at<a href="http://localhost:4000/表明hexo" target="_blank" rel="external">http://localhost:4000/表明hexo</a> server已经启动</li>
+<li>在浏览器中打开 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a><h2 id="hexo命令"><a href="#hexo命令" class="headerlink" title="hexo命令"></a>hexo命令</h2></li>
+<li><p>在H:\hexo目录下打开一个git bash命令行窗口，执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>刷新<a href="http://localhost:4000/，可以发现已生成了一篇新文章" target="_blank" rel="external">http://localhost:4000/，可以发现已生成了一篇新文章</a> “My New Post”。</p>
+</li>
+<li>执行下面的命令，将markdown文件生成静态网页：hexo generate，该命令执行完后，会在 D:\Hexo\public\ 目录下生成一系列html，css等文件。<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2></li>
+<li>配置_config.yml文件<br>首先找到下面的内容:<br>deploy:<br>type:<br>然后将它们修改为<br>deploy:<br>type:  git<br>repository:  <a href="https://github.com/goodpan/goodpan.github.io.git" target="_blank" rel="external">https://github.com/goodpan/goodpan.github.io.git</a><br>branch: master</li>
+<li>配置说明：</li>
+</ul>
+<ol>
+<li>type在git 3.0后填写为git而非github</li>
+<li>type、reoisitory、branch必须有空格，如果格式出错会报如下错误：<br>FATAL bad indentation of a mapping entry at line 72, column 15:</li>
+</ol>
+<ul>
+<li><p>依次执行以下命令部署：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line"></div><div class="line">hexo generate</div><div class="line"></div><div class="line">hexo deploy</div></pre></td></tr></table></figure>
+</li>
+<li><p>错误解决</p>
+</li>
+</ul>
+<ol>
+<li><p>ERROR Local hexo not found in ~/blog ERROR Try runing: ‘npm install hexo –save’</p>
+<p>执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo --save</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="使用yeoman生成基础代码"><a href="#使用yeoman生成基础代码" class="headerlink" title="使用yeoman生成基础代码"></a>使用yeoman生成基础代码</h2><ol>
+<li><p>安装yeoman</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g yo</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装生成器的库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g generator-hexo-theme</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建themes主题<br>进入themes目录下新建一个用主题命名的新文件夹，设置权限，执行以下命令生成主题模板：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yo hexo-theme</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>按照提示进行相应配置</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/18/js中arguments对象详解/" itemprop="url">
                   js中arguments对象详解
                 </a>
@@ -700,150 +983,6 @@
 <p>执行结果是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[<span class="string">"A"</span>] 1</div><div class="line">foo is an array? <span class="literal">false</span></div></pre></td></tr></table></figure></p>
 <p>也就是说 Foo 的示例拥有 Array 的所有方法，但类型不是 Array。<br>如果不需要 Array 的所有方法，只需要部分怎么办呢？<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Bar</span></span>()&#123;&#125;</div><div class="line">Bar.prototype.push = Array.prototype.push;</div><div class="line">const bar = new Bar();</div><div class="line">bar.push(<span class="string">'A'</span>);</div><div class="line">bar.push(<span class="string">'B'</span>);</div><div class="line">console.log(bar);</div></pre></td></tr></table></figure></p>
 <p>执行结果是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Bar &#123;0: <span class="string">"A"</span>, 1: <span class="string">"B"</span>, length: 2&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/17/hexo的安装部署/" itemprop="url">
-                  hexo 安装部署
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-17T13:46:29+08:00" content="2016-10-17">
-              2016-10-17
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h2><h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><h2 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h2><ul>
-<li>新建一个仓库<br>注意仓库名字：比如我的Github账号是goodpan，那么我应该创建的Repository的名字是：goodpan.github.io。<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="启动hexo"><a href="#启动hexo" class="headerlink" title="启动hexo"></a>启动hexo</h2><ul>
-<li>新建文件夹，如H:\Hexo</li>
-<li>进入Hexo文件中，右键打开Git Bash</li>
-<li><p>执行下面的命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init Hexo</div></pre></td></tr></table></figure>
-<p>随后会自动在目标文件夹建立网站所需要的文件</p>
-</li>
-<li>在Hexo文件中打开终端，运行npm install，安装依赖</li>
-<li>执行：hexo server启动hexo服务,出现：Hexo is running at<a href="http://localhost:4000/表明hexo" target="_blank" rel="external">http://localhost:4000/表明hexo</a> server已经启动</li>
-<li>在浏览器中打开 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a><h2 id="hexo命令"><a href="#hexo命令" class="headerlink" title="hexo命令"></a>hexo命令</h2></li>
-<li><p>在H:\hexo目录下打开一个git bash命令行窗口，执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>刷新<a href="http://localhost:4000/，可以发现已生成了一篇新文章" target="_blank" rel="external">http://localhost:4000/，可以发现已生成了一篇新文章</a> “My New Post”。</p>
-</li>
-<li>执行下面的命令，将markdown文件生成静态网页：hexo generate，该命令执行完后，会在 D:\Hexo\public\ 目录下生成一系列html，css等文件。<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2></li>
-<li>配置_config.yml文件<br>首先找到下面的内容:<br>deploy:<br>type:<br>然后将它们修改为<br>deploy:<br>type:  git<br>repository:  <a href="https://github.com/goodpan/goodpan.github.io.git" target="_blank" rel="external">https://github.com/goodpan/goodpan.github.io.git</a><br>branch: master</li>
-<li>配置说明：</li>
-</ul>
-<ol>
-<li>type在git 3.0后填写为git而非github</li>
-<li>type、reoisitory、branch必须有空格，如果格式出错会报如下错误：<br>FATAL bad indentation of a mapping entry at line 72, column 15:</li>
-</ol>
-<ul>
-<li><p>依次执行以下命令部署：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line"></div><div class="line">hexo generate</div><div class="line"></div><div class="line">hexo deploy</div></pre></td></tr></table></figure>
-</li>
-<li><p>错误解决</p>
-</li>
-</ul>
-<ol>
-<li><p>ERROR Local hexo not found in ~/blog ERROR Try runing: ‘npm install hexo –save’</p>
-<p>执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo --save</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="使用yeoman生成基础代码"><a href="#使用yeoman生成基础代码" class="headerlink" title="使用yeoman生成基础代码"></a>使用yeoman生成基础代码</h2><ol>
-<li><p>安装yeoman</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g yo</div></pre></td></tr></table></figure>
-</li>
-<li><p>安装生成器的库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g generator-hexo-theme</div></pre></td></tr></table></figure>
-</li>
-<li><p>创建themes主题<br>进入themes目录下新建一个用主题命名的新文件夹，设置权限，执行以下命令生成主题模板：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yo hexo-theme</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>按照提示进行相应配置</p>
 
           
         
@@ -1015,13 +1154,20 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
