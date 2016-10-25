@@ -338,11 +338,11 @@
 <p>ECMAScript规范允许for/in循环以不同的顺序遍历对象的属性。通常数组元素的遍历实现是升序的，但不能保证一定是这样的。特别地，如果数组同时拥有对象属性和数组元素，返回的属性名很可能是按照创建的顺序而非数组的大小顺序。如何处理这个问题的实现各不相同，如果算法依赖于遍历的顺序，那么最好不要用for/in而用常规的for循环。</p>
 <h2 id="forEach方法"><a href="#forEach方法" class="headerlink" title="forEach方法"></a>forEach方法</h2><p>ECMAScript5定义了一些遍历数组元素的新方法，按照索引的顺序按个传递给定义的一个函数。这些方法中最常用的就是forEach方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var arr = [1,2,3,4,5];</div><div class="line">var sumOfSquares = 0;//要得到数据的平方和</div><div class="line">arr.forEach(<span class="keyword">function</span>(x)&#123;//把每个元素传递给此函数</div><div class="line">  sumOfSquares+=x*x;//平方相加</div><div class="line">&#125;)</div><div class="line">sumOfSquares</div></pre></td></tr></table></figure></p>
 <p>forEach()和相关的遍历方法使得数组拥有简单而强大的函数式编程风格。</p>
-<h2 id="数组的方法"><a href="#数组的方法" class="headerlink" title="数组的方法"></a>数组的方法</h2><p>在Array.prototype中定义了一些有用的操作数组的函数，这意味着这些函数作为任何数组的方法都是可用的。</p>
+<h2 id="ECMAScript3数组的方法"><a href="#ECMAScript3数组的方法" class="headerlink" title="ECMAScript3数组的方法"></a>ECMAScript3数组的方法</h2><p>在Array.prototype中定义了一些有用的操作数组的函数，这意味着这些函数作为任何数组的方法都是可用的。</p>
 <h3 id="join-方法"><a href="#join-方法" class="headerlink" title="join()方法"></a>join()方法</h3><p>Array.join()将数组中所有元素转化为字符串并连接在一起，返回最后生成的字符串。可以指定分隔符来分隔数组元素，如果不指定则默认用逗号。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var arr = [1,2,3];</div><div class="line">arr.join();//<span class="string">"1,2,3"</span></div><div class="line">arr.join(<span class="string">" "</span>);//<span class="string">"1 2 3"</span></div><div class="line">arr.join(<span class="string">""</span>);//<span class="string">"123"</span></div><div class="line">var b = new Array(10);</div><div class="line">b.join(<span class="string">"-"</span>);//=&gt; <span class="string">"---------"</span>，结果为9个连字号组成的字符串</div></pre></td></tr></table></figure></p>
 <p>split()方法是Array.join()的逆向操作，用来将字符串分隔成若干块来创建一个数组</p>
 <h3 id="reverce-方法"><a href="#reverce-方法" class="headerlink" title="reverce()方法"></a>reverce()方法</h3><p>Array.reverce()方法将数组中的元素颠倒顺序。</p>
-<h3 id="sort-方法"><a href="#sort-方法" class="headerlink" title="sort()方法"></a>sort()方法</h3><h3 id="concat-方法"><a href="#concat-方法" class="headerlink" title="concat()方法"></a>concat()方法</h3><h3 id="slice-方法"><a href="#slice-方法" class="headerlink" title="slice()方法"></a>slice()方法</h3><h3 id="splice-方法-1"><a href="#splice-方法-1" class="headerlink" title="splice()方法"></a>splice()方法</h3>
+<h3 id="sort-方法"><a href="#sort-方法" class="headerlink" title="sort()方法"></a>sort()方法</h3><h3 id="concat-方法"><a href="#concat-方法" class="headerlink" title="concat()方法"></a>concat()方法</h3><h3 id="slice-方法"><a href="#slice-方法" class="headerlink" title="slice()方法"></a>slice()方法</h3><h3 id="splice-方法-1"><a href="#splice-方法-1" class="headerlink" title="splice()方法"></a>splice()方法</h3><h3 id="push-和pop-方法"><a href="#push-和pop-方法" class="headerlink" title="push()和pop()方法"></a>push()和pop()方法</h3><h3 id="unshift-和shift-方法"><a href="#unshift-和shift-方法" class="headerlink" title="unshift()和shift()方法"></a>unshift()和shift()方法</h3><h3 id="toString-和toLocaleString-方法"><a href="#toString-和toLocaleString-方法" class="headerlink" title="toString()和toLocaleString()方法"></a>toString()和toLocaleString()方法</h3><h2 id="ECMAScript5中的数组方法"><a href="#ECMAScript5中的数组方法" class="headerlink" title="ECMAScript5中的数组方法"></a>ECMAScript5中的数组方法</h2><h3 id="forEach-方法"><a href="#forEach-方法" class="headerlink" title="forEach()方法"></a>forEach()方法</h3><h3 id="map-方法"><a href="#map-方法" class="headerlink" title="map()方法"></a>map()方法</h3><h3 id="filter-方法"><a href="#filter-方法" class="headerlink" title="filter()方法"></a>filter()方法</h3><h2 id="every-和some-方法"><a href="#every-和some-方法" class="headerlink" title="every()和some()方法"></a>every()和some()方法</h2><h2 id="reduce-和reduceRight-方法"><a href="#reduce-和reduceRight-方法" class="headerlink" title="reduce()和reduceRight()方法"></a>reduce()和reduceRight()方法</h2><h2 id="indexOf-和lastIndexOf-方法"><a href="#indexOf-和lastIndexOf-方法" class="headerlink" title="indexOf()和lastIndexOf()方法"></a>indexOf()和lastIndexOf()方法</h2>
           
         
       
@@ -976,108 +976,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/18/hello-world/" itemprop="url">
-                  hexo
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-18T10:44:19+08:00" content="2016-10-18">
-              2016-10-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/18/hexo的安装部署/" itemprop="url">
                   hexo 安装部署
                 </a>
@@ -1173,6 +1071,108 @@
 </li>
 </ol>
 <p>按照提示进行相应配置</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/18/hello-world/" itemprop="url">
+                  hexo
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T10:44:19+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
           
         
@@ -1386,7 +1386,7 @@
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/./public/images/fg.png"
+               src="/public/images/fg.png"
                alt="Su Wen" />
           <p class="site-author-name" itemprop="name">Su Wen</p>
           <p class="site-description motion-element" itemprop="description"></p>
