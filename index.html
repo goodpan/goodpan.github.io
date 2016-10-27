@@ -376,7 +376,22 @@
 <p>splice()的前2个参数指定了需要删除的数组元素。紧随其后的任意个数的参数指定了需要插入到数组的元素，从第一个参数指定的位置开始插入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3,4,5];</div><div class="line">a.splice(2,0,<span class="string">'a'</span>,<span class="string">'b'</span>);//返回[],a是[1, 2, <span class="string">"a"</span>, <span class="string">"b"</span>, 3, 4, 5]</div><div class="line">a.splice(2,2,[1,2],3);//返回[<span class="string">"a"</span>, <span class="string">"b"</span>]，a是[1, 2, [1,2], 3, 3, 4, 5]</div></pre></td></tr></table></figure></p>
 <p>注意：区别于slice()、concat(),splice()会插入数组本身而非数组的元素。</p>
 <h2 id="push-和pop-方法"><a href="#push-和pop-方法" class="headerlink" title="push()和pop()方法"></a>push()和pop()方法</h2><p>push()和pop()方法允许将数组当做栈来使用。push()方法在数组的末尾添加一个或多个元素，并返回数组新的长度。pop()方法则相反：<br>它删除数组的最后一个元素，减少数组长度并返回它删除的值。<br>注意：两个方法都修改并替换原始数组而非生成一个修改版的新数组。<br>组合使用push()和pop()可以实现js数组的先进后出的栈。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var stack = [];</div><div class="line">stack.push(1,2);</div><div class="line">stack.pop();</div><div class="line">stack.push(3);</div><div class="line">stack.pop();</div><div class="line">stack.push([4,5]);</div><div class="line">stack.pop();</div><div class="line">stack.pop();</div></pre></td></tr></table></figure></p>
-<h2 id="unshift-和shift-方法"><a href="#unshift-和shift-方法" class="headerlink" title="unshift()和shift()方法"></a>unshift()和shift()方法</h2><h2 id="toString-和toLocaleString-方法"><a href="#toString-和toLocaleString-方法" class="headerlink" title="toString()和toLocaleString()方法"></a>toString()和toLocaleString()方法</h2><h1 id="ECMAScript5中的数组方法"><a href="#ECMAScript5中的数组方法" class="headerlink" title="ECMAScript5中的数组方法"></a>ECMAScript5中的数组方法</h1><h3 id="forEach-方法"><a href="#forEach-方法" class="headerlink" title="forEach()方法"></a>forEach()方法</h3><h3 id="map-方法"><a href="#map-方法" class="headerlink" title="map()方法"></a>map()方法</h3><h3 id="filter-方法"><a href="#filter-方法" class="headerlink" title="filter()方法"></a>filter()方法</h3><h2 id="every-和some-方法"><a href="#every-和some-方法" class="headerlink" title="every()和some()方法"></a>every()和some()方法</h2><h2 id="reduce-和reduceRight-方法"><a href="#reduce-和reduceRight-方法" class="headerlink" title="reduce()和reduceRight()方法"></a>reduce()和reduceRight()方法</h2><h2 id="indexOf-和lastIndexOf-方法"><a href="#indexOf-和lastIndexOf-方法" class="headerlink" title="indexOf()和lastIndexOf()方法"></a>indexOf()和lastIndexOf()方法</h2>
+<h2 id="unshift-和shift-方法"><a href="#unshift-和shift-方法" class="headerlink" title="unshift()和shift()方法"></a>unshift()和shift()方法</h2><p>unshift()和shift()方法非常类似于push()和pop()方法，不一样的是前者是在数组的头部而非尾部进行元素的插入和删除操作。unshift()在数组的头部添加一个或多个元素，并将已存在的元素移动到更高索引的位置来获得足够的空间，最后返回数组新的长度。shift()删除数组的第一个元素并将其返回，然后把所有随后的元素下移一个位置来填补数组头部的空缺。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = [];</div><div class="line">a.unshift(1);//a:[1] 返回1</div><div class="line">a.unshift(22);//a:[22,1] 返回2</div><div class="line">a.shift();//a:[1]  返回22</div><div class="line">a.unshift(3,[4,5]);//a:[3,[4,5],1]  返回3</div><div class="line">a.shift();  //a:[[4,5],1] 返回3</div><div class="line">a.shift();  //a:[1] 返回[4,5]</div><div class="line">a.shift();  //a:[]  返回1</div></pre></td></tr></table></figure></p>
+<p>注意：当使用多个参数调用unshift()时它的行为令人惊讶。参数是一次性插入的(就像splice()方法)而非一次一个地插入。这意味着最终的数组插入的元素的顺序和它们在参数列表的顺序一致。而假如元素是一次一个地插入，它们的顺序应该是反过来。</p>
+<h2 id="toString-和toLocaleString-方法"><a href="#toString-和toLocaleString-方法" class="headerlink" title="toString()和toLocaleString()方法"></a>toString()和toLocaleString()方法</h2><p>数组和其他的javascript对象一样拥有toString()方法。针对数组，该方法将其每个元素转化为字符串(如有必要将调用元素的toString()方法)并且输出用逗号分隔的字符串列表。<br>注意：输出不包括方括号或其他任何形式的包裹数组值的分隔号：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[1,2,3].toString();//生成<span class="string">'1,2,3'</span></div><div class="line">[<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>].toString();//生成<span class="string">'a,b,c'</span></div><div class="line">[1,[2,<span class="string">'c'</span>]].toString();//生成<span class="string">'1,2,c'</span></div></pre></td></tr></table></figure></p>
+<p>注意：这里与不使用任何参数调用join()方法返回的字符串是一样的。<br>toLocaleString()是toString()方法的本地化版本。它调用元素的toLocaleString()方法将每个数组元素转化为字符串，并且使用本地化（和自定义实现的）分隔符将这些字符串连接起来生成最终的字符串。</p>
+<h1 id="ECMAScript5中的数组方法"><a href="#ECMAScript5中的数组方法" class="headerlink" title="ECMAScript5中的数组方法"></a>ECMAScript5中的数组方法</h1><p>ECMAScript5定义了9个新的数组方法来遍历、映射、过滤、检测、简化和检索数组。</p>
+<h2 id="forEach-方法"><a href="#forEach-方法" class="headerlink" title="forEach()方法"></a>forEach()方法</h2><p>forEach()方法从头至尾遍历数组，为每个数组元素调用指定的函数。传递的函数作为forEach()的第一个参数。然后forEach()使用第三个参数调用该函数：数组元素、元素的索引和数组本身。如果只关心数组元素的值，可以编写只有一个参数的函数—额外的参数将被忽略：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var data = [1,2,3,4,5];   //要求和的数组</div><div class="line">//计算数组元素的和值</div><div class="line">var sum = 0;</div><div class="line">data.forEach(<span class="keyword">function</span> (value) &#123;</div><div class="line">    sum+=value;</div><div class="line">&#125;)//  sum = 15</div><div class="line">//每个数组元素的值自加1</div><div class="line">data.forEach(<span class="keyword">function</span> (v,i,a) &#123;</div><div class="line">  a[i] = v+1;</div><div class="line">&#125;)//  =&gt; [2,3,4,5,6]</div></pre></td></tr></table></figure></p>
+<p>注意：forEach()中不能用break语句终止遍历。如果要提前终止遍历，必须要把forEach()方法放在一个try块中，并能抛出一个异常。如果forEach()调用的函数抛出foreach.break异常，循环会提前终止:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> foreach(a,f,t)&#123;</div><div class="line">  try&#123;&#125;</div><div class="line">  catch(e)&#123;</div><div class="line">    <span class="keyword">if</span>(e===foreach.break)<span class="built_in">return</span>;</div><div class="line">    <span class="keyword">else</span> throw e;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">foreach.break = new Error(<span class="string">"StopIteration"</span>)</div></pre></td></tr></table></figure></p>
+<h2 id="map-方法"><a href="#map-方法" class="headerlink" title="map()方法"></a>map()方法</h2><p>map()方法将调用的数组的每个元素传递给指定的函数，并返回一个数组，它包含该函数的返回值。如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a=[1,2,3];</div><div class="line">b=a.map(<span class="keyword">function</span>(x)&#123;<span class="built_in">return</span> x*x;&#125;);  //b是[1,4,9]</div></pre></td></tr></table></figure></p>
+<p>传递给map()的调用方式和传递给forEach()的调用方式一致。但传递给map()的函数应该有返回值。注意,map()返回的是数组：它不修改调用的数组。如果是稀疏数组，返回的也是相同方式的稀疏数组：它具有相同的长度，相同的缺失函数。</p>
+<h2 id="filter-方法"><a href="#filter-方法" class="headerlink" title="filter()方法"></a>filter()方法</h2><p>filter()方法返回的数组元素是调用的数组的一个子集。传递的函数是用来逻辑判定的：该函数返回true或false。调用判定函数就像调用forEach()和map()一样。如果返回值为true或能转化为true的值，那么传递给判定函数的元素就是这个子集的成员，它将被添加到一个作为返回值的数组中。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3,4,5];</div><div class="line">smallvalues = a.filter(<span class="keyword">function</span>(x)&#123;<span class="built_in">return</span> x&lt;3&#125;); //[2,1]</div><div class="line">everother = a.filter(<span class="keyword">function</span>(x,i)&#123;<span class="built_in">return</span> i%2==0&#125;); //[1, 3, 5]</div></pre></td></tr></table></figure></p>
+<h2 id="every-和some-方法"><a href="#every-和some-方法" class="headerlink" title="every()和some()方法"></a>every()和some()方法</h2><p>every()和some()方法是数组的逻辑判断:它们对数组元素应用指定的函数进行判定，返回true和false。<br>every()方法就像数学中“针对所有”的量词，当前仅当针对数组中的所有元素调用判定函数都返回true，它才返回true:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3,4,5];</div><div class="line">a.every(<span class="keyword">function</span>(x)&#123;<span class="built_in">return</span> x&lt;10&#125;);  //=&gt;<span class="literal">true</span>:所有的值是&lt;10</div><div class="line">a.every(<span class="keyword">function</span>(x)&#123;<span class="built_in">return</span> x%2==0&#125;); //=&gt;<span class="literal">false</span>:不是所有的值都是偶数</div></pre></td></tr></table></figure></p>
+<p>some()方法就像数学中的“存在”量词：当数组中至少有一个元素调用判定函数返回true，它就返回true；并且当且仅当数值中的所有元素调用判定函数都返回false，它才返回false。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3,4,5];</div><div class="line">a.some(<span class="keyword">function</span>(x)&#123;<span class="built_in">return</span> x%2 ===0;&#125;);  //=&gt;<span class="literal">true</span></div><div class="line">a.some(isNaN);  //=&gt;<span class="literal">false</span> a不包含非数值元素</div></pre></td></tr></table></figure></p>
+<p>注意：一旦every()和some()确认该返回什么值它们就会停止遍历数组元素。<br>根据数学上的惯例，在空数组上调用时，every()返回true，some()返回false<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a = [];a.some(<span class="function"><span class="title">function</span></span>()&#123;<span class="built_in">return</span>&#125;);</div><div class="line"><span class="literal">false</span></div><div class="line">var a = [];a.every(<span class="function"><span class="title">function</span></span>()&#123;<span class="built_in">return</span>&#125;);</div><div class="line"><span class="literal">true</span></div></pre></td></tr></table></figure></p>
+<h2 id="reduce-和reduceRight-方法"><a href="#reduce-和reduceRight-方法" class="headerlink" title="reduce()和reduceRight()方法"></a>reduce()和reduceRight()方法</h2><p>reduce()和reduceRight()方法使用指定的函数将数组元素进行组合，生成单个值。这个在函数式编程中是常见的操作，也可以称作“注入”和“折叠”。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a = [1,2,3,4,5];</div><div class="line">var sum = a.reduce(<span class="keyword">function</span>(x,y)&#123;<span class="built_in">return</span> x+y&#125;,0);  //数组求和</div><div class="line">var product = a.reduce(<span class="keyword">function</span>(x,y)&#123;<span class="built_in">return</span> x*y&#125;,1);  //数组求积</div><div class="line">var max = a.reduce(<span class="keyword">function</span>(x,y)&#123;<span class="built_in">return</span> (x&gt;y)?x:y;&#125;); //求最大值</div></pre></td></tr></table></figure></p>
+<h2 id="indexOf-和lastIndexOf-方法"><a href="#indexOf-和lastIndexOf-方法" class="headerlink" title="indexOf()和lastIndexOf()方法"></a>indexOf()和lastIndexOf()方法</h2><p>indexOf()和lastIndexOf()方法搜索整个数组中具有给定值的元素，返回找到的第一个元素的索引或者如果没有找到返回-1。indexOf()从头到尾搜索，而lastIndexOf()则反向搜索。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a = [0,1,2,1,0];</div><div class="line">a.indexOf(1); // =&gt;1:a[1]是1</div><div class="line">a.lastIndexOf(1); //=&gt;3:a[3]是1</div><div class="line">a.indexOf(3); // =&gt;-1：没有值为3的元素</div></pre></td></tr></table></figure></p>
+
           
         
       
@@ -1010,6 +1025,108 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/18/hello-world/" itemprop="url">
+                  hexo
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T10:44:19+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/18/hexo的安装部署/" itemprop="url">
                   hexo 安装部署
                 </a>
@@ -1105,108 +1222,6 @@
 </li>
 </ol>
 <p>按照提示进行相应配置</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/18/hello-world/" itemprop="url">
-                  hexo
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-18T10:44:19+08:00" content="2016-10-18">
-              2016-10-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
           
         
