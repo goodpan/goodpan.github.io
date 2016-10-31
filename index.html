@@ -246,6 +246,190 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/31/javascript中String类型详解/" itemprop="url">
+                  javascript中String类型详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-31T09:13:54+08:00" content="2016-10-31">
+              2016-10-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>String类型用于表示由零或多个16位Unicode字符组成的字符序列，即字符串。可以由””和’’表示，两种写法都是有效的。(与PHP中的双引号和单引号会影响解释方式不同，ECMAscript的这两种语法形式没有区别)。</p>
+<h1 id="字符串类型的创建"><a href="#字符串类型的创建" class="headerlink" title="字符串类型的创建"></a>字符串类型的创建</h1><h2 id="字面量方式"><a href="#字面量方式" class="headerlink" title="字面量方式"></a>字面量方式</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">\n  换行</div><div class="line">\t  制表</div><div class="line">\b  空格</div><div class="line">\r  回车</div><div class="line">\f  进纸</div><div class="line">\\  斜杠</div><div class="line">\<span class="string">'  单引号</span></div><div class="line">\"  双引号</div></pre></td></tr></table></figure>
+<p>这些字符串可以出现在字符串中的任意位置，而且也将作为一个字符来解析。</p>
+<h2 id="String构造函数创建"><a href="#String构造函数创建" class="headerlink" title="String构造函数创建"></a>String构造函数创建</h2><p>String类型是字符串的对象包装类型，可以像下面这样使用String构造函数创建：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var stringObject = new String(<span class="string">"hello world"</span>);</div></pre></td></tr></table></figure></p>
+<p>String对象的方法也可以在所有基本的字符串值中访问到。其中继承的valueOf().toLocalString()和toString()方法，都返回对象所表示的基本字符串值。<br>String类型的每个实例都有一个length属性，表示字符串中有多个字符。应该注意的是，即使字符串中包含双字节字符（不是占一个字节的ASCII字符），每个字符仍然算一个字符。</p>
+<h1 id="String类型方法"><a href="#String类型方法" class="headerlink" title="String类型方法"></a>String类型方法</h1><h2 id="字符方法"><a href="#字符方法" class="headerlink" title="字符方法"></a>字符方法</h2><p>两个用于访问字符串中特定字符的方法,charAt()和charCodeAt()。这两个方法都接收一个参数，即基于0的字符位置。</p>
+<ol>
+<li><p>charAt()</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var stringValue = <span class="string">"hello world"</span>;</div><div class="line">alert(stringValue.charAt(1));//<span class="string">"e"</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>charCodeAt()<br>charAt()得到的是字符，如果想得到不是字符而是字符编码，则用charCodeAt()</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var stringValue = <span class="string">"hello world"</span>;</div><div class="line">alert(stringValue.charCodeAt(1));//<span class="string">"101"</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>方括号加索引<br>ECMAscript提供了另一个访问字符串的方法，可以使用方括号加数字索引来访问字符串中的特定字符。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var stringValue = <span class="string">"hello world"</span>;</div><div class="line">alert(stringValue[1]);//<span class="string">"e"</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这种方式在IE7会返回undefined值。</p>
+<h2 id="字符串操作方法"><a href="#字符串操作方法" class="headerlink" title="字符串操作方法"></a>字符串操作方法</h2><ol>
+<li>concat()<br>将一个或多个字符串拼接起来，返回拼接得到的新字符串。<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var stringValue = <span class="string">"hello"</span>;</div><div class="line">var result = stringValue.concat(<span class="string">"world"</span>);</div><div class="line">alert(result);//<span class="string">"hello world"</span></div><div class="line">alert(stringValue);//<span class="string">"hello"</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>concat可以接收任意多个参数，即可以拼接任意多个字符串。<br>虽然concat可以专门用来拼接字符串，但是实际中使用更多的是用+操作符。</p>
+<ol>
+<li>slice()</li>
+</ol>
+<ol>
+<li><p>substr()</p>
+</li>
+<li><p>subString()</p>
+</li>
+</ol>
+<h2 id="字符串位置方法"><a href="#字符串位置方法" class="headerlink" title="字符串位置方法"></a>字符串位置方法</h2><ol>
+<li><p>indexOf()</p>
+</li>
+<li><p>lastIndexOf()</p>
+</li>
+</ol>
+<h2 id="去空格trim-方法"><a href="#去空格trim-方法" class="headerlink" title="去空格trim()方法"></a>去空格trim()方法</h2><h2 id="字符串大小写转换方法"><a href="#字符串大小写转换方法" class="headerlink" title="字符串大小写转换方法"></a>字符串大小写转换方法</h2><ol>
+<li>toLowerCase()</li>
+</ol>
+<ol>
+<li><p>toLocaleLowerCase()</p>
+</li>
+<li><p>toUpperCase()</p>
+</li>
+<li><p>toLocaleUpperCase()</p>
+</li>
+</ol>
+<h2 id="字符串的模式匹配方法"><a href="#字符串的模式匹配方法" class="headerlink" title="字符串的模式匹配方法"></a>字符串的模式匹配方法</h2><ol>
+<li><p>match()</p>
+</li>
+<li><p>search()</p>
+</li>
+<li><p>replace()</p>
+</li>
+</ol>
+<h2 id="字符串比较方法localeCompare"><a href="#字符串比较方法localeCompare" class="headerlink" title="字符串比较方法localeCompare()"></a>字符串比较方法localeCompare()</h2><h2 id="fromCharCode-方法"><a href="#fromCharCode-方法" class="headerlink" title="fromCharCode()方法"></a>fromCharCode()方法</h2><h2 id="HTML方法"><a href="#HTML方法" class="headerlink" title="HTML方法"></a>HTML方法</h2><h1 id="字符串特点"><a href="#字符串特点" class="headerlink" title="字符串特点"></a>字符串特点</h1><p>字符串是不可变的，一旦创建，它们的值就不能改变。要改变某个变量保存的字符串，首先要销毁原来的字符串，然后再用另一个包含新值的字符串填充该变量：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var lang = <span class="string">"java"</span>;</div><div class="line">lang = lang + <span class="string">"script"</span>;</div></pre></td></tr></table></figure></p>
+<p>以上代码后台操作过程为：首先创建一个容纳10个字符的新字符串，然后在这个字符串中填充”java”和”script”,最后一步是销毁原来的字符串”java”和”script”,因为这两个字符串已经没有用了。</p>
+<h1 id="字符串类型转换"><a href="#字符串类型转换" class="headerlink" title="字符串类型转换"></a>字符串类型转换</h1><p>将一个值转换为字符串有两种方式：<br>1.toString()<br>数值、布尔值、对象和字符串（每个字符串也多有一个toString()方法，该方法返回字符串的副本)都有toString()方法。但null和undefined值没有这个方法。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var age = 11;</div><div class="line">var ageAsString = age.toString();//<span class="string">"11"</span></div><div class="line">var found = <span class="literal">true</span>;</div><div class="line">var foundAsString = found.toString();//<span class="string">"true"</span></div></pre></td></tr></table></figure></p>
+<p>通过给toString()方法传递参数可以输出以二进制、十进制、八进制、十六进制乃至其他任意有效进制格式表示的字符串。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var num = 10;</div><div class="line">alert(num.toString());//<span class="string">"10"</span></div><div class="line">alert(num.toString(2));//<span class="string">"1010"</span></div><div class="line">alert(num.toString(8));//<span class="string">"12"</span></div><div class="line">alert(num.toString(10));//<span class="string">"10"</span></div><div class="line">alert(num.toString(16));//<span class="string">"a"</span></div></pre></td></tr></table></figure></p>
+<p>2.String()转型函数<br>在不知道要转换的值是不是null或undefined的情况下，可以使用转型函数String()，这个函数能够将任何类型的值转换为字符串。String()函数遵循下列转换规则：</p>
+<ul>
+<li>如果值有toString()方法，则调用该方法（无参数）并返回相应的结果；</li>
+<li>如果值是null,则返回”null”;</li>
+<li>如果值是undefined，则返回”undefined”。<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var value1 = 10;</div><div class="line">var value2 = <span class="literal">true</span>;</div><div class="line">var value3 = null;</div><div class="line">var value4;</div><div class="line">alert(String(value1));//<span class="string">"10"</span></div><div class="line">alert(String(value2));//<span class="string">"true"</span></div><div class="line">alert(String(value3));//<span class="string">"null"</span></div><div class="line">alert(String(value4));//<span class="string">"undefined"</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>+””方式</li>
+</ol>
+<h1 id="作为数组的字符串"><a href="#作为数组的字符串" class="headerlink" title="作为数组的字符串"></a>作为数组的字符串</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var s = <span class="string">"JavaScript"</span>;</div><div class="line">Array.prototype.join.call(s,<span class="string">" "</span>);//=&gt; <span class="string">"J a v a S c r i p t"</span></div><div class="line">Array.prototype.filter.call(s,<span class="keyword">function</span>(x)&#123;</div><div class="line">      <span class="built_in">return</span> x.match(/[^aeiou]/);</div><div class="line">  &#125;).join(<span class="string">""</span>) //=&gt; <span class="string">"JvScript"</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/28/javascript函数柯里化详解/" itemprop="url">
                   javascript函数柯里化详解
                 </a>
@@ -310,6 +494,8 @@
         
           
             <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>与函数绑定紧密相关的主题是函数柯里化(function currying)，它用于创建已经设置好了一个或多个参数的函数。函数柯里化的基本方法和函数绑定是一样的：使用一个闭包返回一个函数。两者的区别在于，当函数被调用时，返回的函数还需要设置一些传入的参数。<br>柯里化函数通常由以下步骤动态创建：调用另一个函数并为它传入要柯里化的函数和必要参数。下面是创建柯里化函数的通用方式。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> curry(fn)&#123;</div><div class="line">  var args = Array.prototype.slice.call(arguments,1);</div><div class="line">  <span class="built_in">return</span> <span class="function"><span class="title">function</span></span>()&#123;</div><div class="line">    var innerArgs = Array.prototype.slice.call(arguments);</div><div class="line">    var finalArgs = args.concat(innerArgs);</div><div class="line">    <span class="built_in">return</span> fn.apply(null,finalArgs);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>柯里化示例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> add(num1,num2) &#123;</div><div class="line">  <span class="built_in">return</span> num1+num2;</div><div class="line">&#125;</div><div class="line">var curryAdd = curry(add,5);//调用以上柯里化函数</div><div class="line">curryAdd(2);//结果7</div></pre></td></tr></table></figure></p>
+<p>也可以这样：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> add(num1,num2) &#123;</div><div class="line">  <span class="built_in">return</span> num1+num2;</div><div class="line">&#125;</div><div class="line">var curryAdd = curry(add,5，12);//调用以上柯里化函数</div><div class="line">curryAdd();//结果17</div></pre></td></tr></table></figure></p>
 
           
         
@@ -1556,7 +1742,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
