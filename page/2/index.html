@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,22 +84,12 @@
 
 
 
-<meta name="description" content="概念arguments对象时一个类数组的对象，代表传给一个function的参数列表。arguments并不是真正的数组，它是一个类数组对象。
-length属性arguments包含一个length属性，通过arguments.length可获得参数个数。
-argumens转数组Array.prototype.slice通常使用下面的方法来将 arguments 转换成数组：1Array.prot">
-<meta property="og:type" content="article">
-<meta property="og:title" content="js中arguments对象详解">
-<meta property="og:url" content="http://yoursite.com/2016/10/18/js中arguments对象详解/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="goodpan">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="goodpan">
-<meta property="og:description" content="概念arguments对象时一个类数组的对象，代表传给一个function的参数列表。arguments并不是真正的数组，它是一个类数组对象。
-length属性arguments包含一个length属性，通过arguments.length可获得参数个数。
-argumens转数组Array.prototype.slice通常使用下面的方法来将 arguments 转换成数组：1Array.prot">
-<meta property="og:updated_time" content="2016-10-24T08:40:46.429Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js中arguments对象详解">
-<meta name="twitter:description" content="概念arguments对象时一个类数组的对象，代表传给一个function的参数列表。arguments并不是真正的数组，它是一个类数组对象。
-length属性arguments包含一个length属性，通过arguments.length可获得参数个数。
-argumens转数组Array.prototype.slice通常使用下面的方法来将 arguments 转换成数组：1Array.prot">
+<meta name="twitter:title" content="goodpan">
 
 
 
@@ -120,10 +110,10 @@ argumens转数组Array.prototype.slice通常使用下面的方法来将 argument
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/18/js中arguments对象详解/"/>
+  <link rel="canonical" href="http://yoursite.com/page/2/"/>
 
 
-  <title> js中arguments对象详解 | goodpan </title>
+  <title> goodpan </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -144,7 +134,9 @@ argumens转数组Array.prototype.slice通常使用下面的方法来将 argument
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <div class="container one-collumn sidebar-position-right 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -231,9 +223,9 @@ argumens转数组Array.prototype.slice通常使用下面的方法来将 argument
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
   
@@ -253,7 +245,10 @@ argumens转数组Array.prototype.slice通常使用下面的方法来将 argument
             
             
               
-                js中arguments对象详解
+                
+                <a class="post-title-link" href="/2016/10/18/js中arguments对象详解/" itemprop="url">
+                  js中arguments对象详解
+                </a>
               
             
           </h1>
@@ -312,7 +307,9 @@ argumens转数组Array.prototype.slice通常使用下面的方法来将 argument
       
 
       
-        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>arguments对象时一个类数组的对象，代表传给一个function的参数列表。<br>arguments并不是真正的数组，它是一个类数组对象。</p>
+        
+          
+            <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>arguments对象时一个类数组的对象，代表传给一个function的参数列表。<br>arguments并不是真正的数组，它是一个类数组对象。</p>
 <h2 id="length属性"><a href="#length属性" class="headerlink" title="length属性"></a>length属性</h2><p>arguments包含一个length属性，通过arguments.length可获得参数个数。</p>
 <h2 id="argumens转数组"><a href="#argumens转数组" class="headerlink" title="argumens转数组"></a>argumens转数组</h2><h3 id="Array-prototype-slice"><a href="#Array-prototype-slice" class="headerlink" title="Array.prototype.slice"></a>Array.prototype.slice</h3><p>通常使用下面的方法来将 arguments 转换成数组：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.prototype.slice.call(arguments);</div></pre></td></tr></table></figure></p>
 <p>简写：<br>[].slice.call(arguments);<br>在这里，只是简单地调用了空数组的 slice 方法，而没有从 Array 的原型层面调用。<br>通过借用Array的slice方法可以将类数组（伪数组）转换为数组。slice方法得到的结果是一个数组，参数为arguments。<br>事实上，满足一定条件的对象都能被slice方法转换为数组。如:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">const obj = &#123;0:<span class="string">"A"</span>,1:<span class="string">"B"</span>,2:<span class="string">"C"</span>,length:3&#125;;</div><div class="line">const result = [].slice.call(obj);</div><div class="line">console.log(Array.isArray(result), result);</div></pre></td></tr></table></figure></p>
@@ -353,59 +350,40 @@ argumens转数组Array.prototype.slice通常使用下面的方法来将 argument
 <p>也就是说 Foo 的示例拥有 Array 的所有方法，但类型不是 Array。<br>如果不需要 Array 的所有方法，只需要部分怎么办呢？<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Bar</span></span>()&#123;&#125;</div><div class="line">Bar.prototype.push = Array.prototype.push;</div><div class="line">const bar = new Bar();</div><div class="line">bar.push(<span class="string">'A'</span>);</div><div class="line">bar.push(<span class="string">'B'</span>);</div><div class="line">console.log(bar);</div></pre></td></tr></table></figure></p>
 <p>执行结果是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Bar &#123;0: <span class="string">"A"</span>, 1: <span class="string">"B"</span>, length: 2&#125;</div></pre></td></tr></table></figure></p>
 
+          
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/javascript/" rel="tag">#javascript</a>
-          
-        </div>
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/18/hello-world/" rel="prev" title="hexo">
-                hexo <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -413,10 +391,6 @@ argumens转数组Array.prototype.slice通常使用下面的方法来将 argument
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -436,17 +410,8 @@ argumens转数组Array.prototype.slice通常使用下面的方法来将 argument
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/public/images/fg.png"
@@ -516,17 +481,6 @@ argumens转数组Array.prototype.slice通常使用下面的方法来将 argument
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#length属性"><span class="nav-number">2.</span> <span class="nav-text">length属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#argumens转数组"><span class="nav-number">3.</span> <span class="nav-text">argumens转数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-prototype-slice"><span class="nav-number">3.1.</span> <span class="nav-text">Array.prototype.slice</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#arguments-泄露或者传递的问题"><span class="nav-number">4.</span> <span class="nav-text">arguments 泄露或者传递的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改-arguments-值"><span class="nav-number">5.</span> <span class="nav-text">修改 arguments 值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将参数从一个函数传递到另一个函数"><span class="nav-number">6.</span> <span class="nav-text">将参数从一个函数传递到另一个函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#arguments-与重载"><span class="nav-number">7.</span> <span class="nav-text">arguments 与重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6-中的-arguments"><span class="nav-number">8.</span> <span class="nav-text">ES6 中的 arguments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展操作符"><span class="nav-number">8.1.</span> <span class="nav-text">扩展操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#es6中-arguments-转数组"><span class="nav-number">8.2.</span> <span class="nav-text">es6中 arguments 转数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组与类数组对象"><span class="nav-number">9.</span> <span class="nav-text">数组与类数组对象</span></a></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -623,10 +577,6 @@ argumens转数组Array.prototype.slice通常使用下面的方法来将 argument
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
-
-
 
   
 

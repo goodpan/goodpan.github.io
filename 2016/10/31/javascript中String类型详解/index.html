@@ -94,7 +94,7 @@
 <meta property="og:description" content="概念String类型用于表示由零或多个16位Unicode字符组成的字符序列，即字符串。可以由””和’’表示，两种写法都是有效的。(与PHP中的双引号和单引号会影响解释方式不同，ECMAscript的这两种语法形式没有区别)。
 字符串类型的创建字面量方式12345678\n  换行\t  制表\b  空格\r  回车\f  进纸\\  斜杠\&apos;  单引号\&quot;  双引号
 这些字符串可以出现在字符串中">
-<meta property="og:updated_time" content="2016-10-31T02:36:35.061Z">
+<meta property="og:updated_time" content="2016-10-31T02:38:36.315Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript中String类型详解">
 <meta name="twitter:description" content="概念String类型用于表示由零或多个16位Unicode字符组成的字符序列，即字符串。可以由””和’’表示，两种写法都是有效的。(与PHP中的双引号和单引号会影响解释方式不同，ECMAscript的这两种语法形式没有区别)。
@@ -377,9 +377,9 @@
 <ul>
 <li>如果值有toString()方法，则调用该方法（无参数）并返回相应的结果；</li>
 <li>如果值是null,则返回”null”;</li>
-<li>如果值是undefined，则返回”undefined”。<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var value1 = 10;</div><div class="line">var value2 = <span class="literal">true</span>;</div><div class="line">var value3 = null;</div><div class="line">var value4;</div><div class="line">alert(String(value1));//<span class="string">"10"</span></div><div class="line">alert(String(value2));//<span class="string">"true"</span></div><div class="line">alert(String(value3));//<span class="string">"null"</span></div><div class="line">alert(String(value4));//<span class="string">"undefined"</span></div></pre></td></tr></table></figure>
-</li>
+<li>如果值是undefined，则返回”undefined”。</li>
 </ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var value1 = 10;</div><div class="line">var value2 = <span class="literal">true</span>;</div><div class="line">var value3 = null;</div><div class="line">var value4;</div><div class="line">alert(String(value1));//<span class="string">"10"</span></div><div class="line">alert(String(value2));//<span class="string">"true"</span></div><div class="line">alert(String(value3));//<span class="string">"null"</span></div><div class="line">alert(String(value4));//<span class="string">"undefined"</span></div></pre></td></tr></table></figure>
 <ol>
 <li>+””方式</li>
 </ol>
@@ -422,6 +422,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/01/Object类型详解/" rel="prev" title="Object类型详解">
+                Object类型详解 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -489,7 +493,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

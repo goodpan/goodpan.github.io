@@ -246,6 +246,176 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/01/Object类型详解/" itemprop="url">
+                  Object类型详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-01T09:15:29+08:00" content="2016-11-01">
+              2016-11-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h1><p>引用类型的值（对象）是引用类型的一个实例。在ECMAScript中，引用类型是一种数据结构，用于将数据和功能组织在一起。引用类型有时候也被成为对象定义，因为它们描述的是一类对象所具有的属性和方法。</p>
+<p>对象是某个特定引用类型的实例。新对象是使用new操作符后跟一个构造函数来创建的。构造函数本身就是一个函数，只不过该函数是出于创建新对象的目的而定义的。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var person = new Object();</div></pre></td></tr></table></figure></p>
+<p>这行代码创建了一个Object新实例，然后把该实例保存在了变量person中。使用的构造函数式Object，它只为新对象定义了默认的属性和方法。ECMAScript提供了很多原生引用类型（例如Object)，以便开发人员用以实现常见的计算任务。</p>
+<h1 id="Object实例的创建"><a href="#Object实例的创建" class="headerlink" title="Object实例的创建"></a>Object实例的创建</h1><ol>
+<li><p>new操作符方式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var person = new Object();</div><div class="line">person.name = <span class="string">"Nicholas"</span>;</div><div class="line">person.age = 29;</div></pre></td></tr></table></figure>
+</li>
+<li><p>对象字面量方式<br>对象字面量是对象定义的一个简写形式，目的在于简化创建包含大量属性的对象的过程。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var person = &#123;</div><div class="line">  name:<span class="string">"Nicholas"</span>,</div><div class="line">  age:29</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在对象字面量语法中，属性名也可以使用字符串。<br>使用对象字面量语法，可以通过’.’的方式访问对象属性，也可以使用”[属性名]”来访访问属性。从功能上看，这二者没有区别。但”[]”的优点是可以通过变量来访问属性：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var propertyName = <span class="string">"name"</span>;</div><div class="line">alert(person[propertyName]);//<span class="string">"Nicholas"</span></div></pre></td></tr></table></figure></p>
+<p>如果属性名中包含会导致语法错误的字符，或者属性名使用的是关键字或者保留字，也可以使用方括号表示法。</p>
+<h1 id="Object属性"><a href="#Object属性" class="headerlink" title="Object属性"></a>Object属性</h1><h2 id="Constructor"><a href="#Constructor" class="headerlink" title="Constructor"></a>Constructor</h2><p>保存用于创建当前对象的函数。</p>
+<h1 id="Object方法"><a href="#Object方法" class="headerlink" title="Object方法"></a>Object方法</h1><h2 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign()"></a>Object.assign()</h2><p>Object.assign函数是ES2015的内容，使用该函数我们可以快速的复制一个或者多个对象到目标对象中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.assign(target, ...sources)</div></pre></td></tr></table></figure></p>
+<h3 id="函数原型"><a href="#函数原型" class="headerlink" title="函数原型"></a>函数原型</h3><p>函数参数为一个目标对象（该对象作为最终的返回值）,源对象(此处可以为任意多个)。通过调用该函数可以拷贝所有可被枚举的自有属性值到目标对象中。<br>这里我们需要强调的三点是：</p>
+<ol>
+<li>可被枚举的属性</li>
+<li>自有属性</li>
+<li>string或者Symbol类型是可以被直接分配的<br>拷贝过程中将调用源对象的getter方法，并在target对象上使用setter方法实现目标对象的拷贝。</li>
+</ol>
+<h3 id="函数实例"><a href="#函数实例" class="headerlink" title="函数实例"></a>函数实例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var o1 = &#123; a: 1 &#125;;</div><div class="line">var o2 = &#123; b: 2 &#125;;</div><div class="line">var o3 = &#123; c: 3 &#125;;</div><div class="line"></div><div class="line">var obj = Object.assign(o1, o2, o3);</div><div class="line">console.log(obj); // &#123; a: 1, b: 2, c: 3 &#125;</div><div class="line">console.log(o1);  // &#123; a: 1, b: 2, c: 3 &#125;, target object itself is changed.</div></pre></td></tr></table></figure>
+<p>最开始的o1因为设置为target，则调用其setter方法设置了其他对象的属性到自身。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var obj = Object.create(&#123; foo: 1 &#125;, &#123; // foo is an inherit property.</div><div class="line">  bar: &#123;</div><div class="line">    value: 2  // bar is a non-enumerable property.</div><div class="line">  &#125;,</div><div class="line">  baz: &#123;</div><div class="line">    value: 3,</div><div class="line">    enumerable: <span class="literal">true</span>  // baz is an own enumerable property.</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">var copy = Object.assign(&#123;&#125;, obj);</div><div class="line">console.log(copy); // &#123; baz: 3 &#125;</div></pre></td></tr></table></figure></p>
+<p>我们自定义了一些对象，这些对象有一些包含了不可枚举的属性,另外注意使用 Object.defineProperty 初始化的对象默认是不可枚举的属性。对于可枚举的对象我们可以直接使用Object.keys()获得,或者使用for-in循环遍历出来.<br>对于不可枚举的属性，使用Object.assign的时候将被自动忽略。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var target = Object.defineProperty(&#123;&#125;, <span class="string">'foo'</span>, &#123;</div><div class="line">  value: 1,</div><div class="line">  writable: <span class="literal">false</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">Object.assign(target, &#123; bar: 2 &#125;)</div><div class="line"></div><div class="line">//&#123;bar: 2, foo: 1&#125;</div><div class="line"></div><div class="line">Object.assign(target, &#123; foo: 2 &#125;)</div><div class="line">//Uncaught TypeError: Cannot assign to <span class="built_in">read</span> only property <span class="string">'foo'</span> of object <span class="string">'#&lt;Object&gt;'</span>(…)</div></pre></td></tr></table></figure></p>
+<p>对于只读的属性，当分配新的对象覆盖他的时候，将抛出异常。</p>
+<h3 id="Polyfill"><a href="#Polyfill" class="headerlink" title="Polyfill"></a>Polyfill</h3><ol>
+<li>实现es5版本的Object.assign：</li>
+<li>判断是否原生支持该函数，如果不存在的话创建一个立即执行函数，该函数将创建一个assign函数绑定到Object上。</li>
+<li>判断参数是否正确(目的对象不能为空，我们可以直接设置{}传递进去,但必须设置该值)</li>
+<li>使用Object在原有的对象基础上返回该对象，并保存为out</li>
+<li>使用for…in循环遍历出所有的可枚举的自有对象。并复制给新的目标对象(hasOwnProperty返回非原型链上的属性)<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (typeof Object.assign != <span class="string">'function'</span>) &#123;</div><div class="line">  (<span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">	Object.assign = <span class="keyword">function</span> (target) &#123;</div><div class="line">	 <span class="string">'use strict'</span>;</div><div class="line">	 <span class="keyword">if</span> (target === undefined || target === null) &#123;</div><div class="line">	   throw new TypeError(<span class="string">'Cannot convert undefined or null to object'</span>);</div><div class="line">	 &#125;</div><div class="line"></div><div class="line">	 var output = Object(target);</div><div class="line">	 <span class="keyword">for</span> (var index = 1; index &lt; arguments.length; index++) &#123;</div><div class="line">	   var <span class="built_in">source</span> = arguments[index];</div><div class="line">	   <span class="keyword">if</span> (<span class="built_in">source</span> !== undefined &amp;&amp; <span class="built_in">source</span> !== null) &#123;</div><div class="line">	     <span class="keyword">for</span> (var nextKey <span class="keyword">in</span> <span class="built_in">source</span>) &#123;</div><div class="line">	       <span class="keyword">if</span> (source.hasOwnProperty(nextKey)) &#123;</div><div class="line">	         output[nextKey] = <span class="built_in">source</span>[nextKey];</div><div class="line">	       &#125;</div><div class="line">	     &#125;</div><div class="line">	   &#125;</div><div class="line">	 &#125;</div><div class="line">	 <span class="built_in">return</span> output;</div><div class="line">	&#125;;</div><div class="line">&#125;)();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create()"></a>Object.create()</h2><p>创建一个具有指定原型且可选择性地包含指定属性的对象<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.create(prototype, descriptors)</div></pre></td></tr></table></figure></p>
+<p>参数:<br>prototype 必需。  要用作原型的对象。 可以为 null。<br>descriptors 可选。 包含一个或多个属性描述符的 JavaScript 对象。</p>
+<p>简单来讲，new Object()是一种通过构造函数来创建object的方式，而Object.create(proto, [ propertiesObject ])<br>不需要通过构造函数就可以创建一个object，Object.create()的第一个参数是必须要的，第二个参数可选。</p>
+<h2 id="Object-defineProperties"><a href="#Object-defineProperties" class="headerlink" title="Object.defineProperties()"></a>Object.defineProperties()</h2><p>将一个或多个属性添加到对象，并/或修改现有属性的特性。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">object.defineProperties(object, descriptors)</div></pre></td></tr></table></figure></p>
+<p>参数<br>object<br>必需。  对其添加或修改属性的对象。  这可以是本机 JavaScript 对象或 DOM 对象。<br>descriptors<br>必需。  包含一个或多个描述符对象的 JavaScript 对象。  每个描述符对象描述一个数据属性或访问器属性。  </p>
+<p>返回值<br>已传递给函数的对象。</p>
+<p>备注<br>descriptors 参数是一个包含一个或多个描述符对象的对象。<br>数据属性是可储存和检索值的属性。  数据属性描述符包含一个 value 特性和/或一个 writable 特性。  有关更多信息，请参见数据属性和访问器属性。<br>一旦设置或检索属性值，访问器属性就会调用用户提供的函数。<br>访问器属性描述符包含 set 特性和/或 get 特性。<br>如果对象已包含一个带指定名称的属性，则修改该属性的特性。<br>若要创建一个对象并向新对象添加属性，则可使用 Object.create 函数 (JavaScript)。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">var newLine = <span class="string">"&lt;br /&gt;"</span>;</div><div class="line"></div><div class="line">var obj = &#123;&#125;;</div><div class="line">Object.defineProperties(obj, &#123;</div><div class="line">    newDataProperty: &#123;</div><div class="line">        value: 101,</div><div class="line">        writable: <span class="literal">true</span>,</div><div class="line">        enumerable: <span class="literal">true</span>,</div><div class="line">        configurable: <span class="literal">true</span></div><div class="line">    &#125;,</div><div class="line">    newAccessorProperty: &#123;</div><div class="line">        <span class="built_in">set</span>: <span class="keyword">function</span> (x) &#123;</div><div class="line">            document.write(<span class="string">"in property set accessor"</span> + newLine);</div><div class="line">            this.newaccpropvalue = x;</div><div class="line">        &#125;,</div><div class="line">        get: <span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">            document.write(<span class="string">"in property get accessor"</span> + newLine);</div><div class="line">            <span class="built_in">return</span> this.newaccpropvalue;</div><div class="line">        &#125;,</div><div class="line">        enumerable: <span class="literal">true</span>,</div><div class="line">        configurable: <span class="literal">true</span></div><div class="line">    &#125;&#125;);</div><div class="line"></div><div class="line">// Set the accessor property value.</div><div class="line">obj.newAccessorProperty = 10;</div><div class="line">document.write (<span class="string">"newAccessorProperty value: "</span> + obj.newAccessorProperty + newLine);</div><div class="line"></div><div class="line">// Output:</div><div class="line">// <span class="keyword">in</span> property <span class="built_in">set</span> accessor</div><div class="line">// <span class="keyword">in</span> property get accessor</div><div class="line">// newAccessorProperty value: 10</div></pre></td></tr></table></figure></p>
+<h2 id="Object-defineProperty"><a href="#Object-defineProperty" class="headerlink" title="Object.defineProperty()"></a>Object.defineProperty()</h2><p>将属性添加到对象，或修改现有属性的特性。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.defineProperty(object, propertyname, descriptor)</div></pre></td></tr></table></figure></p>
+<p>参数<br>object<br>必需。  要在其上添加或修改属性的对象。  这可能是一个本机 JavaScript 对象（即用户定义的对象或内置对象）或 DOM 对象。<br>propertyname<br>必需。  一个包含属性名称的字符串。<br>descriptor<br>必需。  属性描述符。  它可以针对数据属性或访问器属性。  </p>
+<p>返回值<br>已修改对象。</p>
+<p>备注<br>可使用 Object.defineProperty 函数来执行以下操作：<br>向对象添加新属性。  当对象不具有指定的属性名称时，发生此操作。<br>修改现有属性的特性。  当对象已具有指定的属性名称时，发成此操作。<br>描述符对象中会提供属性定义，用于描述数据属性或访问器属性的特性。  描述符对象是 Object.defineProperty 函数的参数。<br>若要向对象添加多个属性或修改多个现有属性，可使用 Object.defineProperties 函数 (JavaScript)。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">var newLine = <span class="string">"&lt;br /&gt;"</span>;</div><div class="line"></div><div class="line">// Create a user-defined object.</div><div class="line">var obj = &#123;&#125;;</div><div class="line"></div><div class="line">// Add a data property to the object.</div><div class="line">Object.defineProperty(obj, <span class="string">"newDataProperty"</span>, &#123;</div><div class="line">    value: 101,</div><div class="line">    writable: <span class="literal">true</span>,</div><div class="line">    enumerable: <span class="literal">true</span>,</div><div class="line">    configurable: <span class="literal">true</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">// Set the property value.</div><div class="line">obj.newDataProperty = 102;</div><div class="line">document.write(<span class="string">"Property value: "</span> + obj.newDataProperty + newLine);</div><div class="line"></div><div class="line">// Output:</div><div class="line">// Property value: 102</div></pre></td></tr></table></figure></p>
+<h2 id="Object-freeze"><a href="#Object-freeze" class="headerlink" title="Object.freeze()"></a>Object.freeze()</h2><p>阻止修改现有属性的特性和值，并阻止添加新属性。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.freeze(object)</div></pre></td></tr></table></figure></p>
+<p>参数<br>object<br>必需。在其上锁定特性的对象。<br>返回值<br>传递给函数的对象。</p>
+<h2 id="getOwnPropertyDescriptor"><a href="#getOwnPropertyDescriptor" class="headerlink" title="getOwnPropertyDescriptor()"></a>getOwnPropertyDescriptor()</h2><p>获取指定对象的自身属性描述符。自身属性描述符是指直接在对象上定义（而非从对象的原型继承）的描述符。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.getOwnPropertyDescriptor(object, propertyname)</div></pre></td></tr></table></figure></p>
+<p>参数<br>object<br>必需。包含属性的对象。<br>propertyname<br>必需。属性的名称。</p>
+<p>返回值<br>属性的描述符。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// Create a user-defined object.</div><div class="line">var obj = &#123;&#125;;</div><div class="line"></div><div class="line">// Add a data property.</div><div class="line">obj.newDataProperty = <span class="string">"abc"</span>;</div><div class="line"></div><div class="line">// Get the property descriptor.</div><div class="line">var descriptor = Object.getOwnPropertyDescriptor(obj, <span class="string">"newDataProperty"</span>);</div><div class="line"></div><div class="line">// Change a property attribute.</div><div class="line">descriptor.writable = <span class="literal">false</span>;</div><div class="line">Object.defineProperty(obj, <span class="string">"newDataProperty"</span>, descriptor);</div></pre></td></tr></table></figure></p>
+<h2 id="getOwnPropertyDescriptors"><a href="#getOwnPropertyDescriptors" class="headerlink" title="getOwnPropertyDescriptors()"></a>getOwnPropertyDescriptors()</h2><p>Object.getOwnPropertyDescriptors(obj)</p>
+<h2 id="getOwnPropertyNames"><a href="#getOwnPropertyNames" class="headerlink" title="getOwnPropertyNames()"></a>getOwnPropertyNames()</h2><p>返回对象自己的属性的名称。一个对象的自己的属性是指直接对该对象定义的属性，而不是从该对象的原型继承的属性。对象的属性包括字段（对象）和函数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.getOwnPropertyNames(object)</div></pre></td></tr></table></figure></p>
+<p>参数<br>Object<br>必需。包含自己的属性的对象</p>
+<p>返回值<br>一个数组，其中包含对象自己的属性的名称。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> Pasta(grain, width, shape) &#123;</div><div class="line">    // Define properties.</div><div class="line">    this.grain = grain;</div><div class="line">    this.width = width;</div><div class="line">    this.shape = shape;</div><div class="line">    this.toString = <span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">        <span class="built_in">return</span> (this.grain + <span class="string">", "</span> + this.width + <span class="string">", "</span> + this.shape);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Create an object.</div><div class="line">var spaghetti = new Pasta(<span class="string">"wheat"</span>, 0.2, <span class="string">"circle"</span>);</div><div class="line"></div><div class="line">// Get the own property names.</div><div class="line">var arr = Object.getOwnPropertyNames(spaghetti);</div><div class="line">document.write (arr);</div><div class="line"></div><div class="line">// Output:</div><div class="line">//   grain,width,shape,toString</div></pre></td></tr></table></figure></p>
+<h2 id="getOwnPropertySymbols"><a href="#getOwnPropertySymbols" class="headerlink" title="getOwnPropertySymbols()"></a>getOwnPropertySymbols()</h2><h2 id="getPrototypeOf"><a href="#getPrototypeOf" class="headerlink" title="getPrototypeOf()"></a>getPrototypeOf()</h2><h2 id="is"><a href="#is" class="headerlink" title="is()"></a>is()</h2><p>返回一个值，该值指示两个值是否相同。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Object.is(value1, value2)</div></pre></td></tr></table></figure>
+<p>参数<br>value1<br>必需。要测试的第一个值。<br>value2<br>必需。要测试的第二个值。</p>
+<p>返回值<br>如果值相同，则为 true；否则为 false。</p>
+<p>备注<br>与 = = 运算符不同，Object.is 在测试值时不会强制任何类型。<br>Object.is 应用的比较类似于 === 运算符所应用的比较，区别在于 Object.is 将 Number.isNaN 视作与 NaN 相同的值。它还将 + 0 和-0 视作不同值。</p>
+<h2 id="isExtensible"><a href="#isExtensible" class="headerlink" title="isExtensible()"></a>isExtensible()</h2><h2 id="isFrozen"><a href="#isFrozen" class="headerlink" title="isFrozen()"></a>isFrozen()</h2><h2 id="isSealed"><a href="#isSealed" class="headerlink" title="isSealed()"></a>isSealed()</h2><h2 id="keys"><a href="#keys" class="headerlink" title="keys()"></a>keys()</h2><h2 id="preventExtensions"><a href="#preventExtensions" class="headerlink" title="preventExtensions()"></a>preventExtensions()</h2><h2 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty()"></a>hasOwnProperty()</h2><h2 id="isPrototypeOf-NaN"><a href="#isPrototypeOf-NaN" class="headerlink" title="isPrototypeOf()"></a>isPrototypeOf()</h2><h2 id="propertyIsEnumerable-NaN"><a href="#propertyIsEnumerable-NaN" class="headerlink" title="propertyIsEnumerable()"></a>propertyIsEnumerable()</h2><h2 id="toLocaleString-NaN"><a href="#toLocaleString-NaN" class="headerlink" title="toLocaleString()"></a>toLocaleString()</h2><h2 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h2><h2 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h2><h2 id="watch"><a href="#watch" class="headerlink" title="watch()"></a>watch()</h2><h2 id="seal"><a href="#seal" class="headerlink" title="seal()"></a>seal()</h2><h2 id="setPrototypeOf"><a href="#setPrototypeOf" class="headerlink" title="setPrototypeOf()"></a>setPrototypeOf()</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/31/javascript中String类型详解/" itemprop="url">
                   javascript中String类型详解
                 </a>
@@ -374,9 +544,9 @@
 <ul>
 <li>如果值有toString()方法，则调用该方法（无参数）并返回相应的结果；</li>
 <li>如果值是null,则返回”null”;</li>
-<li>如果值是undefined，则返回”undefined”。<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var value1 = 10;</div><div class="line">var value2 = <span class="literal">true</span>;</div><div class="line">var value3 = null;</div><div class="line">var value4;</div><div class="line">alert(String(value1));//<span class="string">"10"</span></div><div class="line">alert(String(value2));//<span class="string">"true"</span></div><div class="line">alert(String(value3));//<span class="string">"null"</span></div><div class="line">alert(String(value4));//<span class="string">"undefined"</span></div></pre></td></tr></table></figure>
-</li>
+<li>如果值是undefined，则返回”undefined”。</li>
 </ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var value1 = 10;</div><div class="line">var value2 = <span class="literal">true</span>;</div><div class="line">var value3 = null;</div><div class="line">var value4;</div><div class="line">alert(String(value1));//<span class="string">"10"</span></div><div class="line">alert(String(value2));//<span class="string">"true"</span></div><div class="line">alert(String(value3));//<span class="string">"null"</span></div><div class="line">alert(String(value4));//<span class="string">"undefined"</span></div></pre></td></tr></table></figure>
 <ol>
 <li>+””方式</li>
 </ol>
@@ -1324,108 +1494,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/18/hello-world/" itemprop="url">
-                  hexo
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-18T10:44:19+08:00" content="2016-10-18">
-              2016-10-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/18/hexo的安装部署/" itemprop="url">
                   hexo 安装部署
                 </a>
@@ -1570,8 +1638,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/18/js中arguments对象详解/" itemprop="url">
-                  js中arguments对象详解
+                <a class="post-title-link" href="/2016/10/18/hello-world/" itemprop="url">
+                  hexo
                 </a>
               
             
@@ -1584,30 +1652,11 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-18T08:40:53+08:00" content="2016-10-18">
+            <time itemprop="dateCreated" datetime="2016-10-18T10:44:19+08:00" content="2016-10-18">
               2016-10-18
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -1633,46 +1682,15 @@
       
         
           
-            <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>arguments对象时一个类数组的对象，代表传给一个function的参数列表。<br>arguments并不是真正的数组，它是一个类数组对象。</p>
-<h2 id="length属性"><a href="#length属性" class="headerlink" title="length属性"></a>length属性</h2><p>arguments包含一个length属性，通过arguments.length可获得参数个数。</p>
-<h2 id="argumens转数组"><a href="#argumens转数组" class="headerlink" title="argumens转数组"></a>argumens转数组</h2><h3 id="Array-prototype-slice"><a href="#Array-prototype-slice" class="headerlink" title="Array.prototype.slice"></a>Array.prototype.slice</h3><p>通常使用下面的方法来将 arguments 转换成数组：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.prototype.slice.call(arguments);</div></pre></td></tr></table></figure></p>
-<p>简写：<br>[].slice.call(arguments);<br>在这里，只是简单地调用了空数组的 slice 方法，而没有从 Array 的原型层面调用。<br>通过借用Array的slice方法可以将类数组（伪数组）转换为数组。slice方法得到的结果是一个数组，参数为arguments。<br>事实上，满足一定条件的对象都能被slice方法转换为数组。如:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">const obj = &#123;0:<span class="string">"A"</span>,1:<span class="string">"B"</span>,2:<span class="string">"C"</span>,length:3&#125;;</div><div class="line">const result = [].slice.call(obj);</div><div class="line">console.log(Array.isArray(result), result);</div></pre></td></tr></table></figure></p>
-<p>结果：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="literal">true</span> [<span class="string">"A"</span>, <span class="string">"B"</span>]</div></pre></td></tr></table></figure></p>
-<p>通过上面的例子可以发现，满足伪数组的条件：</p>
-<p>1) 属性为 0，1，2…；<br>2） 具有 length 属性；</p>
-<h2 id="arguments-泄露或者传递的问题"><a href="#arguments-泄露或者传递的问题" class="headerlink" title="arguments 泄露或者传递的问题"></a>arguments 泄露或者传递的问题</h2><p>不能将函数的 arguments 泄露或者传递出去。什么意思呢？看下面的几个泄露 arguments 的例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// Leaking arguments example1:</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">getArgs</span></span>()&#123;</div><div class="line">    returnarguments;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Leaking arguments example2:</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">getArgs</span></span>()&#123;</div><div class="line">    const args = [].slice.call(arguments);</div><div class="line">    <span class="built_in">return</span> args;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// Leaking arguments example3:</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">getArgs</span></span>()&#123;</div><div class="line">    const args = arguments;</div><div class="line">    <span class="function"><span class="title">returnfunction</span></span>()&#123;</div><div class="line">        <span class="built_in">return</span> args;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>上面的做法就直接将函数的 arguments 对象泄露出去了，最终的结果就是 V8 引擎将会跳过优化，导致相当大的性能损失。</p>
-<p>你可以这么做：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">getArgs</span></span>()&#123;</div><div class="line">    const args = new Array(arguments.length);</div><div class="line">    <span class="keyword">for</span>(<span class="built_in">let</span> i = 0; i &lt; args.length; ++i) &#123;</div><div class="line">        args[i] = arguments[i];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> args;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>那就很好奇了，我们每次使用 arguments 时通常第一步都会将其转换为数组，同时 arguments 使用不当还容易导致性能损失，那么为什么不将 arguments 直接设计成数组对象呢？</p>
-<p>这需要从这门语言的一开始说起。arguments 在语言的早期就引入了，当时的 Array 对象具有 4 个方法： toString、 join、 reverse 和 sort。arguments 继承于 Object 的很大原因是不需要这四个方法。而现在，Array 添加了很多强大的方法，比如 forEach、map、filter 等等。那为什么现在不在新的版本里让 arguments 重新继承自 Array呢？其实 ES5 的草案中就包含这一点，但为了向前兼容，最终还是被委员会否决了。</p>
-<h2 id="修改-arguments-值"><a href="#修改-arguments-值" class="headerlink" title="修改 arguments 值"></a>修改 arguments 值</h2><p>在严格模式与非严格模式下，修改函数参数值表现的结果不一样。看下面的两个例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> foo(a)&#123;</div><div class="line">    <span class="string">"use strict"</span>;</div><div class="line">    console.log(a, arguments[0]);</div><div class="line">    a = 10;</div><div class="line">    console.log(a, arguments[0]);</div><div class="line">    arguments[0] = 20;</div><div class="line">    console.log(a, arguments[0]);</div><div class="line">&#125;</div><div class="line">foo(1);</div></pre></td></tr></table></figure></p>
-<p>输出：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">11</div><div class="line">101</div><div class="line">1020</div></pre></td></tr></table></figure></p>
-<p>另一个非严格模式的例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> foo(a)&#123;</div><div class="line">    console.log(a, arguments[0]);</div><div class="line">    a = 10;</div><div class="line">    console.log(a, arguments[0]);</div><div class="line">    arguments[0] = 20;</div><div class="line">    console.log(a, arguments[0]);</div><div class="line">&#125;</div><div class="line">foo(1);</div></pre></td></tr></table></figure></p>
-<p>从上面的两个例子中可以看出，在严格模式下，函数中的参数与 arguments 对象没有联系，修改一个值不会改变另一个值。而在非严格模式下，两个会互相影响。</p>
-<h2 id="将参数从一个函数传递到另一个函数"><a href="#将参数从一个函数传递到另一个函数" class="headerlink" title="将参数从一个函数传递到另一个函数"></a>将参数从一个函数传递到另一个函数</h2><p>下面是将参数从一个函数传递到另一个函数的推荐做法。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>()&#123;</div><div class="line">    bar.apply(this, arguments);</div><div class="line">&#125;</div><div class="line">functionbar(a, b, c)&#123;</div><div class="line">    // logic</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>注：这种方式经常在框架中使用，通过在构造函数中调用原型的init方法，把参数传递给init方法。</p>
-<h2 id="arguments-与重载"><a href="#arguments-与重载" class="headerlink" title="arguments 与重载"></a>arguments 与重载</h2><p>很多语言中都有重载，但 JavaScript 中没有。先看个例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> add(num1, num2)&#123;</div><div class="line">    console.log(<span class="string">"Method one"</span>);</div><div class="line">        <span class="built_in">return</span> num1 + num2;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="keyword">function</span> add(num1, num2, num3)&#123;</div><div class="line">    console.log(<span class="string">"Method two"</span>);</div><div class="line">    <span class="built_in">return</span> num1 + num2 + num3;</div><div class="line">&#125;</div><div class="line"></div><div class="line">add(1, 2);</div><div class="line">add(1, 2, 3);</div></pre></td></tr></table></figure></p>
-<p>执行结果为：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Method two</div><div class="line">Method two</div></pre></td></tr></table></figure></p>
-<p>所以，JavaScript 中，函数并没有根据参数的不同而产生不同的调用。<br>是不是 JavaScript 中就没有重载了呢？并不是，我们可以利用 arguments 模拟重载。还是上面的例子。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> add(num1, num2, num3)&#123;</div><div class="line">    <span class="keyword">if</span> (arguments.length === 2) &#123;</div><div class="line">    console.log(<span class="string">"Result is "</span> + (num1 + num2));</div><div class="line">    &#125;</div><div class="line">    elseif (arguments.length === 3) &#123;</div><div class="line">        console.log(<span class="string">"Result is "</span> + (num1 + num2 + num3));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">add(1, 2);</div><div class="line">add(1, 2, 3)</div></pre></td></tr></table></figure></p>
-<p>执行结果如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Result is 3</div><div class="line">Result is 6</div></pre></td></tr></table></figure></p>
-<h2 id="ES6-中的-arguments"><a href="#ES6-中的-arguments" class="headerlink" title="ES6 中的 arguments"></a>ES6 中的 arguments</h2><h3 id="扩展操作符"><a href="#扩展操作符" class="headerlink" title="扩展操作符"></a>扩展操作符</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">func</span></span>()&#123;</div><div class="line">    console.log(...arguments);</div><div class="line">&#125;</div><div class="line"></div><div class="line">func(1, 2, 3);</div></pre></td></tr></table></figure>
-<p>执行结果是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">123</div></pre></td></tr></table></figure></p>
-<p>而不是[1,2,3]<br>简洁地讲，扩展操作符可以将 arguments 展开成独立的参数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">### Rest 参数</span></div><div class="line"><span class="keyword">function</span> func(firstArg, ...restArgs)&#123;</div><div class="line">    console.log(Array.isArray(restArgs));</div><div class="line">    console.log(firstArg, restArgs);</div><div class="line">&#125;</div><div class="line"></div><div class="line">func(1, 2, 3);</div></pre></td></tr></table></figure></p>
-<p>执行结果是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="literal">true</span></div><div class="line">1 [2, 3]</div></pre></td></tr></table></figure></p>
-<p>从上面的结果可以看出，Rest参数表示除了明确指定外，剩下的参数集合，类型是 Array。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">### 默认参数</span></div><div class="line"><span class="keyword">function</span> func(firstArg = 0, secondArg = 1)&#123;</div><div class="line">    console.log(arguments[0], arguments[1]);</div><div class="line">    console.log(firstArg, secondArg);</div><div class="line">&#125;</div><div class="line">func(99);</div></pre></td></tr></table></figure></p>
-<p>执行结果是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">99undefined</div><div class="line">991</div></pre></td></tr></table></figure></p>
-<p>可见，默认参数对 arguments 没有影响，arguments 还是仅仅表示调用函数时所传入的所有参数。</p>
-<h3 id="es6中-arguments-转数组"><a href="#es6中-arguments-转数组" class="headerlink" title="es6中 arguments 转数组"></a>es6中 arguments 转数组</h3><p>Array.from() 是个非常推荐的方法，其可以将所有类数组对象转换成数组。<br>有时我们会遇到这样的场景，需要创建一个包含从0到99(n)的连续整数的数组。以前我们会这样写:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var arr = [];</div><div class="line"><span class="keyword">for</span>(var i = 0; i &lt;= 99; i++) &#123;</div><div class="line">    arr.push(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这种方法最直观了，性能也很好。只是不喜欢写 for循环 的同学可能不会这样写，所以有人搞出了下面这种写法:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var arr = Array(100).join(<span class="string">' '</span>).split(<span class="string">''</span>).map(<span class="keyword">function</span>(item,index)&#123;<span class="built_in">return</span> index&#125;);</div></pre></td></tr></table></figure></p>
-<p>这种方法中 Array(100) 创建了一个包含100个 undefined 的数组。但是这样的数组是没法迭代的(参考 forEach 方法的 定义 )，所以要通过字符串转换，覆盖 undefined ，最后调用 map 修改元素值。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var arr = Array.from(&#123;length:100&#125;).map(<span class="keyword">function</span>(item,index)&#123;<span class="built_in">return</span> index&#125;);</div></pre></td></tr></table></figure></p>
-<p>这种方法中 Array.from({length:100}) 也是创建了一个包含100个 undefined 的数组，Array.from 创建的数组是可以迭代的([].slice.call({length:100})创建的不可迭代)，即使元素值都是 undefined,可以直接调用 map 方法。所以 Array.from 还可以用来实现次数确定的循环遍历。例如在写 React 组件时，有时要 map 迭代确定次数，生成 html。<br>Array.from 好用归好用，不过在性能上却有些尴尬。上面三种方法第一种性能最好，第二种次之，第三种最差。</p>
-<h2 id="数组与类数组对象"><a href="#数组与类数组对象" class="headerlink" title="数组与类数组对象"></a>数组与类数组对象</h2><p>数组具有一个基本特征：索引。这是一般对象所没有的。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const obj = &#123; 0: <span class="string">"a"</span>, 1: <span class="string">"b"</span> &#125;;</div><div class="line">const arr = [ <span class="string">"a"</span>, <span class="string">"b"</span> ];</div></pre></td></tr></table></figure></p>
-<p>我们利用 obj[0]、arr[0] 都能取得自己想要的数据，但取得数据的方式确实不同的。obj[0] 是利用对象的键值对存取数据，而 arr[0] 却是利用数组的索引。事实上，Object 与 Array 的唯一区别就是 Object 的属性是 string，而 Array 的索引是 number。</p>
-<p>下面看看类数组对象。<br>伪数组的特性就是长得像数组，包含一组数据以及拥有一个 length 属性，但是没有任何 Array 的方法。再具体的说，length 属性是个非负整数，上限是 JavaScript 中能精确表达的最大数字；另外，类数组对象的 length 值无法自动改变。</p>
-<p>如何自己创建一个类数组对象？<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Foo</span></span>()&#123;&#125;</div><div class="line">Foo.prototype = Object.create(Array.prototype);</div><div class="line"></div><div class="line">const foo = new Foo();</div><div class="line">foo.push(<span class="string">'A'</span>);</div><div class="line">console.log(foo, foo.length);</div><div class="line">console.log(<span class="string">"foo is an array? "</span> + Array.isArray(foo));</div></pre></td></tr></table></figure></p>
-<p>执行结果是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[<span class="string">"A"</span>] 1</div><div class="line">foo is an array? <span class="literal">false</span></div></pre></td></tr></table></figure></p>
-<p>也就是说 Foo 的示例拥有 Array 的所有方法，但类型不是 Array。<br>如果不需要 Array 的所有方法，只需要部分怎么办呢？<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">Bar</span></span>()&#123;&#125;</div><div class="line">Bar.prototype.push = Array.prototype.push;</div><div class="line">const bar = new Bar();</div><div class="line">bar.push(<span class="string">'A'</span>);</div><div class="line">bar.push(<span class="string">'B'</span>);</div><div class="line">console.log(bar);</div></pre></td></tr></table></figure></p>
-<p>执行结果是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Bar &#123;0: <span class="string">"A"</span>, 1: <span class="string">"B"</span>, length: 2&#125;</div></pre></td></tr></table></figure></p>
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
           
         
@@ -1704,6 +1722,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1742,7 +1764,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
