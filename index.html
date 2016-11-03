@@ -246,6 +246,185 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/02/HTML表单详解/" itemprop="url">
+                  HTML表单详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-02T10:41:48+08:00" content="2016-11-02">
+              2016-11-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>通常，HTML 表单的作用的是将数据发送到服务器上。服务器会处理这些数据并将结果返回给用户。这个过程似乎很容易，但是必须时刻注意要确保这些数据不能够破坏服务器或者给用户带来麻烦。</p>
+<h1 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单<form></form></h1><p>HTML的表单元素标签为<form></form>，它定义了数据将以怎样的方式发送到服务器。当按下“发送”按钮的时候，它将产生一个到服务器请求。需要牢记它的action和method方法。</p>
+<h2 id="action"><a href="#action" class="headerlink" title="action"></a>action</h2><p>这个方法定义了数据将被发送到的位置。它的值必须是一个合法的URL地址，如果没有包含该属性，数据将被发送到当前页面的地址。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;form action=<span class="string">"http://goodpan.github.io"</span>&gt;</div></pre></td></tr></table></figure></p>
+<p>许多旧的编写方式如下所示，加上#来指示数据应该被发送到当前页面，这在HTML5出现之前都是必须要有的，但是现在不再需要了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;form action=<span class="string">"#"</span>&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="method方法"><a href="#method方法" class="headerlink" title="method方法"></a>method方法</h2><p>这个属性定义了数据是如何发送的。HTTP协议提供了一些处理请求的方法。HTML表单数据可以通过至少两种方式来发送：GET和POST方法。<br>为了理解这两种方法的差别，我们回过头分析下HTTP是如何工作的。每次你想在互联网上取得一个资源，浏览器就会发送一次请求。一个HTTP请求包含了两部分：一个“请求头”：包含了浏览器所具有能力的集合；还有一个“body”：包含了希望服务器可以处理的各种数据信息。</p>
+<p>1.GET方法<br>GET方法用来让浏览器向服务器请求并索取一个资源。在这种情况下，浏览器会发送一个空的body，由于body是空的，如果发送表单也是采用这种方式的话，数据将会以增加的方式追加到URL地址后面。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;form action=<span class="string">"http://foo.com"</span> method=<span class="string">"get"</span>&gt;</div><div class="line">  &lt;input name=<span class="string">"say"</span> value=<span class="string">"Hi"</span>&gt;</div><div class="line">  &lt;input name=<span class="string">"to"</span> value=<span class="string">"Mom"</span>&gt;</div><div class="line">  &lt;button&gt;Send my greetings&lt;/button&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<p>本次请求的结构如下所示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">GET /?say=Hi&amp;to=Mom HTTP/1.1</div><div class="line">Host: foo.com</div></pre></td></tr></table></figure></p>
+<p>2.POST请求<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;form action=<span class="string">"http://foo.com"</span> method=<span class="string">"post"</span>&gt;</div><div class="line">  &lt;input name=<span class="string">"say"</span> value=<span class="string">"Hi"</span>&gt;</div><div class="line">  &lt;input name=<span class="string">"to"</span> value=<span class="string">"Mom"</span>&gt;</div><div class="line">  &lt;button&gt;Send my greetings&lt;/button&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<p>我们使用了POST方式来发送数据，本次HTTP请求结构如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">POST / HTTP/1.1</div><div class="line">Host: foo.com</div><div class="line">Content-Type: application/x-www-form-urlencoded</div><div class="line">Content-Length: 13</div><div class="line"></div><div class="line">say=Hi&amp;to=Mom</div></pre></td></tr></table></figure></p>
+<p>Content-Length 头指定了body的大小，Content-Type头指定了发送到服务器资源的类型。</p>
+<p>3.GET和POST区别<br>1). 如果你需要发送密码（或者其它敏感数据），请不要使用GET方法否则你会将密码展示到URL中。<br>2). 如果你要发送大量数据，推荐使用POST方法，因为一些浏览器限制了URL的大小以及长度。<br>无论你采用哪种HTTP方法，服务端都会将接收到的字符串解析成一对一对的键值对，以便获取数据。<br>每次你发送数据到服务端，你都需要考虑安全问题。HTML表单是攻击服务端的首选对象，这个问题并不是由HTML表单产生的，而是由服务端采用了不合理的处理方式而导致的。</p>
+<h1 id="表单元素"><a href="#表单元素" class="headerlink" title="表单元素"></a>表单元素</h1><h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">'text'</span> name=<span class="string">''</span> placeholder=<span class="string">''</span> value=<span class="string">''</span>&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> pattern=<span class="string">"^cherry|banana$"</span>&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"email"</span> multiple&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"password"</span>&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"search"</span>&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"tel"</span>&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"url"</span>&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"radio"</span> checked&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"range"</span> min=<span class="string">"1"</span> max=<span class="string">"5"</span> step=<span class="string">"1"</span>&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"date"</span>&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"datetime-local"</span>&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"month"</span>&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"time"</span>&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"week"</span>&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"color"</span>&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"hidden"</span> name=<span class="string">"timestamp"</span> value=<span class="string">"1286705410"</span>&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"image"</span> alt=<span class="string">"Click me!"</span> src=<span class="string">"my-img.png"</span> width=<span class="string">"80"</span> height=<span class="string">"30"</span> /&gt;</div><div class="line">&lt;input id=<span class="string">"fileItem"</span> <span class="built_in">type</span>=<span class="string">"file"</span>&gt;</div></pre></td></tr></table></figure>
+<h2 id="textarea"><a href="#textarea" class="headerlink" title="textarea"></a>textarea</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;textarea cols=<span class="string">"20"</span> rows=<span class="string">"10"</span>&gt;&lt;/textarea&gt;</div></pre></td></tr></table></figure>
+<h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;select&gt;</div><div class="line">  &lt;option&gt;Banana&lt;/option&gt;</div><div class="line">  &lt;option&gt;Cherry&lt;/option&gt;</div><div class="line">  &lt;option&gt;Lemon&lt;/option&gt;</div><div class="line">&lt;/select&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;select&gt;</div><div class="line">  &lt;optgroup label=<span class="string">"fruits"</span>&gt;</div><div class="line">    &lt;option&gt;Banana&lt;/option&gt;</div><div class="line">    &lt;option selected&gt;Cherry&lt;/option&gt;</div><div class="line">    &lt;option&gt;Lemon&lt;/option&gt;</div><div class="line">  &lt;/optgroup&gt;</div><div class="line">  &lt;optgroup label=<span class="string">"vegetables"</span>&gt;</div><div class="line">    &lt;option&gt;Carrot&lt;/option&gt;</div><div class="line">    &lt;option&gt;Eggplant&lt;/option&gt;</div><div class="line">    &lt;option&gt;Potatoe&lt;/option&gt;</div><div class="line">  &lt;/optgroup&gt;</div><div class="line">&lt;/select&gt;</div></pre></td></tr></table></figure>
+<h2 id="button"><a href="#button" class="headerlink" title="button"></a>button</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;button <span class="built_in">type</span>=<span class="string">"button"</span>&gt;</div><div class="line">    This an &lt;br&gt;&lt;strong&gt;anonymous button&lt;/strong&gt;</div><div class="line">&lt;/button&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"button"</span> value=<span class="string">"This is an anonymous button"</span>&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;button <span class="built_in">type</span>=<span class="string">"submit"</span>&gt;</div><div class="line">    This a &lt;br&gt;&lt;strong&gt;submit button&lt;/strong&gt;</div><div class="line">&lt;/button&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"submit"</span> value=<span class="string">"This is a submit button"</span>&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;button <span class="built_in">type</span>=<span class="string">"reset"</span>&gt;</div><div class="line">    This a &lt;br&gt;&lt;strong&gt;reset button&lt;/strong&gt;</div><div class="line">&lt;/button&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"reset"</span> value=<span class="string">"This is a reset button"</span>&gt;</div></pre></td></tr></table></figure>
+<h2 id="Meters-and-progress"><a href="#Meters-and-progress" class="headerlink" title="Meters and progress"></a>Meters and progress</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;progress max=<span class="string">"100"</span> value=<span class="string">"75"</span>&gt;75/100&lt;/progress&gt;</div><div class="line">&lt;meter min=<span class="string">"0"</span> max=<span class="string">"100"</span> value=<span class="string">"75"</span> low=<span class="string">"33"</span> high=<span class="string">"66"</span> optimum=<span class="string">"50"</span>&gt;75&lt;/meter&gt;</div></pre></td></tr></table></figure>
+<h2 id="文件上传File"><a href="#文件上传File" class="headerlink" title="文件上传File"></a>文件上传File</h2><p>通过File API,我们可以在用户选取一个或者多个文件之后,访问到代表了所选文件的一个或多个File对象,这些对象被包含在一个FileList对象中.<br>如果用户只选择了一个文件,那么我们只需要访问这个FileList对象中的第一个元素.</p>
+<p>可以使用传统的DOM选择方法来获取到用户所选择的文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;input id=<span class="string">"fileItem"</span> <span class="built_in">type</span>=<span class="string">"file"</span>&gt;</div><div class="line">var file = document.getElementById(<span class="string">'fileItem'</span>).files[0];</div></pre></td></tr></table></figure></p>
+<p>还可以使用jQuery选择器来选择：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var selectedfile = $(<span class="string">'#input'</span>).get(0).files[0];</div><div class="line">var selectedFile = $(<span class="string">'#input'</span>)[0].files[0];</div></pre></td></tr></table></figure></p>
+<p>以上可以返回一个FileList对象。<br>如果你的程序可以让用户选择多个文件,记得要在input元素上加上multiple属性。</p>
+<h3 id="获取所选文件的信息"><a href="#获取所选文件的信息" class="headerlink" title="获取所选文件的信息"></a>获取所选文件的信息</h3><p>用户所选择的文件都存储在了一个FileList对象上，其中每个文件都对应了一个File对象。你可以通过这个FileList对象的length属性知道用户一共选择了多少个文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var numFiles = files.length;</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>name<br>文件名,只读字符串,不包含任何路径信息.</p>
+</li>
+<li><p>size<br>文件大小,单位为字节,只读的64位整数.</p>
+</li>
+<li><p>type<br>MIME类型,只读字符串,如果类型未知,则返回空字符串.</p>
+</li>
+<li><p>item()</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// fileInput is an HTML input element: &lt;input <span class="built_in">type</span>=<span class="string">"file"</span> id=<span class="string">"myfileinput"</span> multiple&gt;</div><div class="line">var fileInput = document.getElementById(<span class="string">"myfileinput"</span>);</div><div class="line"></div><div class="line">// files is a FileList object (similar to NodeList)</div><div class="line">var files = fileInput.files;</div><div class="line">var file;</div><div class="line"></div><div class="line">// loop through files</div><div class="line"><span class="keyword">for</span> (var i = 0; i &lt; files.length; i++) &#123;</div><div class="line"></div><div class="line">    // get item</div><div class="line">    file = files.item(i);</div><div class="line">    //or</div><div class="line">    file = files[i];</div><div class="line"></div><div class="line">    alert(file.name);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="通过拖放操作选择文件"><a href="#通过拖放操作选择文件" class="headerlink" title="通过拖放操作选择文件"></a>通过拖放操作选择文件</h3><p>你可以让用户将本地文件拖放到你的应用程序上.</p>
+<ol>
+<li>首先要创建一个拖放操作的目的区域。可根据您的应用程序的设计来决定哪部分的内容接受 drop，但创建一个接收drop事件的元素是简单的：<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var dropbox;</div><div class="line"></div><div class="line">dropbox = document.getElementById(<span class="string">"dropbox"</span>);</div><div class="line">dropbox.addEventListener(<span class="string">"dragenter"</span>, dragenter, <span class="literal">false</span>);</div><div class="line">dropbox.addEventListener(<span class="string">"dragover"</span>, dragover, <span class="literal">false</span>);</div><div class="line">dropbox.addEventListener(<span class="string">"drop"</span>, drop, <span class="literal">false</span>);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在这个例子中，ID 为 dropbox 的元素所在的区域是我们的拖放目的区域。我们需要在该元素上绑定 dragenter，dragover，和drop 事件。<br>我们必须阻止dragenter和dragover事件的默认行为，这样才能触发 drop 事件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> dragenter(e) &#123;</div><div class="line">  e.stopPropagation();</div><div class="line">  e.preventDefault();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">function</span> dragover(e) &#123;</div><div class="line">  e.stopPropagation();</div><div class="line">  e.preventDefault();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面是 drop 函数：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> drop(e) &#123;</div><div class="line">  e.stopPropagation();</div><div class="line">  e.preventDefault();</div><div class="line"></div><div class="line">  var dt = e.dataTransfer;</div><div class="line">  var files = dt.files;</div><div class="line"></div><div class="line">  handleFiles(files);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在该函数中,我们从事件对象中获取到dataTransfer对象，把该对象包含的Filelist对象传入函数handleFiles()，这个函数会无区别的对待从input元素或拖放操作中来的文件列表。</p>
+<p>假设你正在开发下一个伟大的照片分享网站，并希望使用HTML5在用户上传他们图片之前进行缩略图预览。您可以如前面所讨论的建立一个输入元素或者拖放区域,并调用一个函数，如下面的 handleFiles 函数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> handleFiles(files) &#123;</div><div class="line">  <span class="keyword">for</span> (var i = 0; i &lt; files.length; i++) &#123;</div><div class="line">    var file = files[i];</div><div class="line">    var imageType = /^image\//;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> ( !imageType.test(file.type) ) &#123;</div><div class="line">      <span class="built_in">continue</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    var img = document.createElement(<span class="string">"img"</span>);</div><div class="line">    img.classList.add(<span class="string">"obj"</span>);</div><div class="line">    img.file = file;</div><div class="line">    // 假设 <span class="string">"preview"</span> 是将要展示图片的 div</div><div class="line">    preview.appendChild(img);</div><div class="line"></div><div class="line">    var reader = new FileReader();</div><div class="line">    reader.onload = (<span class="keyword">function</span>(aImg) &#123;</div><div class="line">      <span class="built_in">return</span> <span class="keyword">function</span>(e) &#123;</div><div class="line">        aImg.src = e.target.result;</div><div class="line">      &#125;;</div><div class="line">    &#125;)(img);</div><div class="line">    reader.readAsDataURL(file);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里我们循环处理用户选择的文件，查看每个文件的类型属性，看看这是否是一个图像文件(通过一个正则表达式匹配字符串”image.*”)。<br>对于每个图片文件，我们创建一个新的img元素。CSS可以用于建立任何漂亮的边界,阴影,和指定图像的大小，所以，甚至不需要在这里完成。</p>
+<p>每张图片我们添加一个obj类，让他们更容易的在DOM树中被找到。我们也在图片上添加了一个file属性来确认每张图片的 File，这样可以帮助我们在之后真正的上传工作时获取到图片。最后我们使用 Node.appendChild() 把缩略图添加到我们先前的文档区域中。</p>
+<p>然后，我们建立了{ { domxref(FileReader)} }来处理图片的异步加载,并把它添加到img元素上。在创建新的FileReader对象之后,我们建立了onload函数,然后调用readAsDataURL()开始在后台进行读取操作。当图像文件的所有内容加载后，他们转换成一个 data: URL，传递到onload回调函数中。之后只需要把img元素的src属性设置为这个加载过的图像，就可以让图像的缩略图出现在用户的屏幕上。</p>
+<h3 id="使用对象URL"><a href="#使用对象URL" class="headerlink" title="使用对象URL"></a>使用对象URL</h3><p>Gecko 2.0 (Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1)开始支持window.URL.createObjectURL()和 window.URL.revokeObjectURL()两个DOM方法。这两个方法创建简单的URL字符串对象，用于指向任何 DOM File 对象数据，包括用户电脑中的本地文件。</p>
+<p>当你想要在HTML中通过URL来引用File对象，你可以参考如下方式创建：</p>
+<p>var objectURL = window.URL.createObjectURL(fileObj);</p>
+<p>URL对象是 File 对象的一个字符串标识。 每次调用window.URL.createObjectURL()的时候，会创建一个唯一的URL对象，即使你已经为该文件创建了URL对象。这些对象都必须被释放。 当文档被卸载时，它们会自动释放，如果你的页面动态地使用它们，你应该明确地通过调用window.URL.revokeObjectURL()释放它们：</p>
+<p>window.URL.revokeObjectURL(objectURL);</p>
+<p>以下为完整示例：</p>
+<p>负责界面呈现的HTML如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"file"</span> id=<span class="string">"fileElem"</span> multiple accept=<span class="string">"image/\*"</span></div><div class="line">  style=<span class="string">"display：none"</span> onchange=<span class="string">"handleFiles(this.files)"</span>&gt;</div><div class="line">&lt;a href=<span class="string">"#"</span> id=<span class="string">"fileSelect"</span>&gt;Select some files&lt;/a&gt;</div><div class="line">&lt;div id=<span class="string">"fileList"</span>&gt;</div><div class="line">  &lt;p&gt;No files selected!&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>这建立文件的<input>元素就像一个调用文件选择器的链接（因为我们要隐藏文件输入，以防止表现出不友好的UI）。这部分将在 Using hidden file input elements using the click() method里解释，因为是调用文件选择器的方法。</p>
+<p>下面是 handleFiles()方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">window.URL = window.URL || window.webkitURL;</div><div class="line"></div><div class="line">var fileSelect = document.getElementById(<span class="string">"fileSelect"</span>),</div><div class="line">    fileElem = document.getElementById(<span class="string">"fileElem"</span>),</div><div class="line">    fileList = document.getElementById(<span class="string">"fileList"</span>);</div><div class="line"></div><div class="line">fileSelect.addEventListener(<span class="string">"click"</span>, <span class="keyword">function</span> (e) &#123;</div><div class="line">  <span class="keyword">if</span> (fileElem) &#123;</div><div class="line">    fileElem.click();</div><div class="line">  &#125;</div><div class="line">  e.preventDefault(); // prevent navigation to <span class="string">"#"</span></div><div class="line">&#125;, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="keyword">function</span> handleFiles(files) &#123;</div><div class="line">  <span class="keyword">if</span> (!files.length) &#123;</div><div class="line">    fileList.innerHTML = <span class="string">"&lt;p&gt;No files selected!&lt;/p&gt;"</span>;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    var list = document.createElement(<span class="string">"ul"</span>);</div><div class="line">    <span class="keyword">for</span> (var i = 0; i &lt; files.length; i++) &#123;</div><div class="line">      var li = document.createElement(<span class="string">"li"</span>);</div><div class="line">      list.appendChild(li);</div><div class="line"></div><div class="line">      var img = document.createElement(<span class="string">"img"</span>);</div><div class="line">      img.src = window.URL.createObjectURL(files[i]);</div><div class="line">      img.height = 60;</div><div class="line">      img.onload = <span class="keyword">function</span>(e) &#123;</div><div class="line">        window.URL.revokeObjectURL(this.src);</div><div class="line">      &#125;</div><div class="line">      li.appendChild(img);</div><div class="line"></div><div class="line">      var info = document.createElement(<span class="string">"span"</span>);</div><div class="line">      info.innerHTML = files[i].name + <span class="string">"： "</span> + files[i].size + <span class="string">" bytes"</span>;</div><div class="line">      li.appendChild(info);</div><div class="line">    &#125;</div><div class="line">    fileList.appendChild(list);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>通过 “fileList” ID 获取 <div>。我们将向这个 div 块插入文件列表和略缩图的地方。</div></p>
+<p>假如传递给 handleFiles() 函数的 FileList 对象为 null，那么就设置 div 块的 inner HTML 为 “No files selected!”。否则，我们将按下面的步骤建立文件列表：</p>
+<p>1.创建一个无序列表 (<ul>) 元素。<br>2.通过调用 element.appendChild() 方法向 <div> 块插入新的列表项。<br>3.files 即是 FileList，对于其中的每一个 File ：</div></ul></p>
+<ul>
+<li>创建一个 </li><li> 元素，并将其插入 list 中。</li>
+<li>创建一个 <img> 元素.</li>
+<li>使用 window.URL.createObjectURL() 创建URL，并设置图片的源为表示文件的新的 URL 对象。</li>
+<li>设置图片的 height 为 60 像素。</li>
+<li>创建图片的 load 事件句柄以其解除 URL 对象，因为图像载入之后就不再需要 URL。这是通过调用 window.URL.revokeObjectURL() 方法来完成的，用 img.src 传入指定的 URL 对象字符串。</li>
+<li>添加新的列表项到列表之中。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/01/Object类型详解/" itemprop="url">
                   Object类型详解
                 </a>
@@ -1496,150 +1675,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/18/hexo的安装部署/" itemprop="url">
-                  hexo 安装部署
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-18T10:44:19+08:00" content="2016-10-18">
-              2016-10-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h2><h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><h2 id="配置github"><a href="#配置github" class="headerlink" title="配置github"></a>配置github</h2><ul>
-<li>新建一个仓库<br>注意仓库名字：比如我的Github账号是goodpan，那么我应该创建的Repository的名字是：goodpan.github.io。<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="启动hexo"><a href="#启动hexo" class="headerlink" title="启动hexo"></a>启动hexo</h2><ul>
-<li>新建文件夹，如H:\Hexo</li>
-<li>进入Hexo文件中，右键打开Git Bash</li>
-<li><p>执行下面的命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init Hexo</div></pre></td></tr></table></figure>
-<p>随后会自动在目标文件夹建立网站所需要的文件</p>
-</li>
-<li>在Hexo文件中打开终端，运行npm install，安装依赖</li>
-<li>执行：hexo server启动hexo服务,出现：Hexo is running at<a href="http://localhost:4000/表明hexo" target="_blank" rel="external">http://localhost:4000/表明hexo</a> server已经启动</li>
-<li>在浏览器中打开 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a><h2 id="hexo命令"><a href="#hexo命令" class="headerlink" title="hexo命令"></a>hexo命令</h2></li>
-<li><p>在H:\hexo目录下打开一个git bash命令行窗口，执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>刷新<a href="http://localhost:4000/，可以发现已生成了一篇新文章" target="_blank" rel="external">http://localhost:4000/，可以发现已生成了一篇新文章</a> “My New Post”。</p>
-</li>
-<li>执行下面的命令，将markdown文件生成静态网页：hexo generate，该命令执行完后，会在 D:\Hexo\public\ 目录下生成一系列html，css等文件。<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2></li>
-<li>配置_config.yml文件<br>首先找到下面的内容:<br>deploy:<br>type:<br>然后将它们修改为<br>deploy:<br>type:  git<br>repository:  <a href="https://github.com/goodpan/goodpan.github.io.git" target="_blank" rel="external">https://github.com/goodpan/goodpan.github.io.git</a><br>branch: master</li>
-<li>配置说明：</li>
-</ul>
-<ol>
-<li>type在git 3.0后填写为git而非github</li>
-<li>type、reoisitory、branch必须有空格，如果格式出错会报如下错误：<br>FATAL bad indentation of a mapping entry at line 72, column 15:</li>
-</ol>
-<ul>
-<li><p>依次执行以下命令部署：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line"></div><div class="line">hexo generate</div><div class="line"></div><div class="line">hexo deploy</div></pre></td></tr></table></figure>
-</li>
-<li><p>错误解决</p>
-</li>
-</ul>
-<ol>
-<li><p>ERROR Local hexo not found in ~/blog ERROR Try runing: ‘npm install hexo –save’</p>
-<p>执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo --save</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="使用yeoman生成基础代码"><a href="#使用yeoman生成基础代码" class="headerlink" title="使用yeoman生成基础代码"></a>使用yeoman生成基础代码</h2><ol>
-<li><p>安装yeoman</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g yo</div></pre></td></tr></table></figure>
-</li>
-<li><p>安装生成器的库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g generator-hexo-theme</div></pre></td></tr></table></figure>
-</li>
-<li><p>创建themes主题<br>进入themes目录下新建一个用主题命名的新文件夹，设置权限，执行以下命令生成主题模板：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yo hexo-theme</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>按照提示进行相应配置</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/18/hello-world/" itemprop="url">
                   hexo
                 </a>
@@ -1766,7 +1801,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1774,7 +1809,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1783,7 +1818,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
